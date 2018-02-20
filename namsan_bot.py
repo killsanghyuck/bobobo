@@ -29,7 +29,7 @@ LIST_FIND = '/discount/discount_list.asp'
 
 #알파리움 주차장id
 AREA_NAME = '남산샌트럴'
-AREA_ID = 11835
+AREA_ID = 11686
 
 driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
 driver.implicitly_wait(3)
@@ -72,7 +72,7 @@ def add_action(chk, k_car_num):
         'show_car_img': '',
         'show_no_recong': '',
         'request_type_value': 'INSERTDISCOUNT',
-        'post_discount_value': 19,
+        'post_discount_value': 16,
         'license_plate_number': k_car_num[-4:],
         'chk': chk
     }
@@ -97,7 +97,7 @@ def admin_login():
     driver.find_element_by_name('commit').click()
 
 def reservation_bot():
-    driver.get(HOST_URL + '/picks?q[parking_lot_id_eq]=' + AREA_ID + '&q[state_eq]=4&order=id_desc')
+    driver.get(HOST_URL + '/picks?q[parking_lot_id_eq]=' + str(AREA_ID) + '&q[state_eq]=4&order=id_desc')
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     #픽 id값과 리스트
