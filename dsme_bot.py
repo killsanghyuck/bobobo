@@ -60,10 +60,10 @@ def find_car_number(k_car_num):
                     car_num = tr_list[i].select('td')[1].text.strip()
                     parking_time = tr_list[1].select('td')[3].text.strip()
                     if car_num == k_car_num and len(parking_time) == 5:
-                        chk = int(tr_list[i].select('td')[0].select('input')[0]['value'])
+                        chk = tr_list[i].select('td')[0].select('input')[0]['value']
                         flag = True
                     elif car_num == k_car_num and parking_time > '20':
-                        chk = int(tr_list[i].select('td')[0].select('input')[0]['value'])
+                        chk = tr_list[i].select('td')[0].select('input')[0]['value']
                         flag = True
     return flag, chk
 
