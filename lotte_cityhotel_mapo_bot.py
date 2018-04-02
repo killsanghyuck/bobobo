@@ -5,31 +5,35 @@ from selenium import webdriver
 from bs4 import BeautifulSoup
 import sys
 import time
+import datetime
+import json
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #웹할인 페이지 계정
 LOGIN_INFO = {
-    'user_id': 'kakaot',
-    'password': '123456'
+    'userId': 'parkhere81',
+    'userPwd': '1234'
 }
 HOST_URL = 'https://parking.kakao.com/admin'
 #웹할인 페이지
-PARK_HOST_URL = 'http://121.128.25.14:8090'
+PARK_HOST_URL = 'http://www.amanopark.co.kr'
 
 #카카오 어드민 계정
 KAKAO_ID = 'san.kill'
 KAKAO_PW = '!@dl926516'
 
-LOGIN_URL = '/account/login.asp'
-SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
-ADD_ACTION_URL = '/discount/discount_regist.asp'
-LIST_FIND = '/discount/discount_list.asp'
+LOGIN_URL = '/login'
+SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
+ADD_ACTION_URL = '/discount/registration/save'
+LIST_FIND = '/discount/state/list/doListMst'
 
-#알파리움 주차장id
-AREA_NAME = 'hsbc'
-AREA_ID = 2923
+TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
+#주차장이름
+AREA_NAME = '롯데시티호텔'
+#주차장ID
+AREA_ID = 2018
 
 driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
 driver.implicitly_wait(3)
@@ -41,53 +45,42 @@ def login():
         return True
 
 def find_car_number(k_car_num):
-    find_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'license_plate_number': k_car_num[-4:]})
     flag = False
-    chk = ''
-    if find_req.status_code == 200:
-        soup = BeautifulSoup(find_req.content, 'html.parser')
-        tr_list = soup.select('table')[3].select('tr')
-        if len(tr_list) > 2:
-            for i in range(1, len(tr_list)-1):
-                try:
-                    enter_car = tr_list[i].select('td')[1]
-                except IndexError:
-                    enter_car = 'null'
-                if enter_car == 'null':
-                    flag = False
-                else:
-                    car_num = tr_list[i].select('td')[1].text.strip()
-                    parking_time = tr_list[1].select('td')[3].text.strip()
-                    if car_num == k_car_num and len(parking_time) == 5:
-                        chk = tr_list[i].select('td')[0].select('input')[0]['value']
-                        flag = True
-                    elif car_num == k_car_num and parking_time > '20':
-                        chk = tr_list[i].select('td')[0].select('input')[0]['value']
-                        flag = True
-    return flag, chk
+    find_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': k_car_num, 'entryDate': TODAY, searchILotArea: 81})
+    data = json.loads(find_req.content)
+    if len(data) >= 1:
+      id = data[0]['id']
+      i_lot_area = data[0]['iLotArea']
+      returned_car_no = data[0]['carNo']
+
+    return flag, id, i_lot_area, returned_car_no
 
 
-def add_action(chk, k_car_num):
+def add_action(id, i_lot_area, returned_car_no, k_car_num):
     ADD_ACTION_PARAMS = {
-        'show_car_img': '',
-        'show_no_recong': '',
-        'request_type_value': 'INSERTDISCOUNT',
-        'post_discount_value': 16,
-        'license_plate_number': k_car_num[-4:],
-        'chk': chk
+        'peId': id,
+        'corp': CORP_NAME,
+        'discountType': 401,
+        'carno': k_car_num,
+        'iLotArea': i_lot_area,
+        'memo': ''
     }
     add_req = s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
     return True
 
 def list_find(k_car_num):
-    flag = True
-    # list_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'license_plate_number': k_car_num[-4:]})
-    # if list_req.status_code == 200:
-    #     soup = BeautifulSoup(list_req.content, 'html.parser')
-    #     try:
-    #         if soup.select('script')[12]: flag = True
-    #     except IndexError:
-    #         flag = False
+    flag = False
+    LIST_FIND_PARAMS = {
+        'startDate': TODAY,
+        'endDate': TODAY,
+        'account_no': 'parkhere81',
+        'carno': k_car_num,
+        'iLotArea': 81
+    }
+    list_req = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+    results = json.loads(find_req.content)
+    results = results['data']
+    if results[0]['carno'] == k_car_num: flag = True
     return flag
 
 def admin_login():
@@ -110,9 +103,9 @@ def reservation_bot():
             soup = BeautifulSoup(html, 'html.parser')
             car_number = soup.select('table > tbody > tr.row-license_number > td')
             k_car_num = car_number[0].encode_contents().strip().replace(' ', '').split("<br/>")[0]
-            find_car = find_car_number(k_car_num)
-            if find_car[0]:
-                if add_action(find_car[1], k_car_num):
+            flag, id, i_lot_area, returned_car_no = find_car_number(k_car_num)
+            if flag:
+                if add_action(id, i_lot_area, returned_car_no, k_car_num):
                     if list_find(k_car_num):
                         print(pick.text + ' : ' + '차량등록 완료 : ' + k_car_num)
                         driver.find_element_by_class_name('select2-choice').click()

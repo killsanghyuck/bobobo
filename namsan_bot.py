@@ -80,14 +80,14 @@ def add_action(chk, k_car_num):
     return True
 
 def list_find(k_car_num):
-    flag = False
-    list_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'license_plate_number': k_car_num[-4:]})
-    if list_req.status_code == 200:
-        soup = BeautifulSoup(list_req.content, 'html.parser')
-        try:
-            if soup.select('script')[12]: flag = True
-        except IndexError:
-            flag = False
+    flag = True
+    # list_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'license_plate_number': k_car_num[-4:]})
+    # if list_req.status_code == 200:
+    #     soup = BeautifulSoup(list_req.content, 'html.parser')
+    #     try:
+    #         if soup.select('script')[12]: flag = True
+    #     except IndexError:
+    #         flag = False
     return flag
 
 def admin_login():

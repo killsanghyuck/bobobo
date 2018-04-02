@@ -16,7 +16,7 @@ LOGIN_INFO = {
 }
 HOST_URL = 'https://parking.kakao.com/admin'
 #웹할인 페이지
-PARK_HOST_URL = 'http://121.128.25.14:8090'
+PARK_HOST_URL = 'http://125.129.33.205:8090'
 
 #카카오 어드민 계정
 KAKAO_ID = 'san.kill'
@@ -27,9 +27,10 @@ SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
 LIST_FIND = '/discount/discount_list.asp'
 
-#알파리움 주차장id
-AREA_NAME = 'hsbc'
-AREA_ID = 2923
+#주차장이름
+AREA_NAME = '구의웰츠'
+#주차장ID
+AREA_ID = 11641
 
 driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
 driver.implicitly_wait(3)
@@ -61,7 +62,7 @@ def find_car_number(k_car_num):
                     if car_num == k_car_num and len(parking_time) == 5:
                         chk = tr_list[i].select('td')[0].select('input')[0]['value']
                         flag = True
-                    elif car_num == k_car_num and parking_time > '20':
+                    elif car_num == k_car_num and parking_time > '10':
                         chk = tr_list[i].select('td')[0].select('input')[0]['value']
                         flag = True
     return flag, chk
@@ -72,7 +73,7 @@ def add_action(chk, k_car_num):
         'show_car_img': '',
         'show_no_recong': '',
         'request_type_value': 'INSERTDISCOUNT',
-        'post_discount_value': 16,
+        'post_discount_value': 19,
         'license_plate_number': k_car_num[-4:],
         'chk': chk
     }
