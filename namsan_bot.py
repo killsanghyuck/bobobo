@@ -31,7 +31,7 @@ LIST_FIND = '/discount/discount_list.asp'
 AREA_NAME = '남산샌트럴'
 AREA_ID = 11686
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 

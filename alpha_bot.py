@@ -30,7 +30,7 @@ LIST_FIND = '/discount/discount_list.asp'
 #알파리움 주차장id
 AREA_NAME = '알파리움'
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 

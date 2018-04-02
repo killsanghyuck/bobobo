@@ -40,7 +40,7 @@ COUPONS = [{ 'id': 60, 'name': '30분쿠폰', 'value': 30 },
 AREA_NAME = '그랑서울'
 AREA_ID = 1804
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 def admin_login():

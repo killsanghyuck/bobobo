@@ -35,7 +35,7 @@ AREA_NAME = '롯데시티호텔'
 #주차장ID
 AREA_ID = 2018
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 

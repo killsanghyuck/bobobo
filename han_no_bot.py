@@ -32,7 +32,7 @@ AREA_NAME = '한국노총'
 #주차장ID
 AREA_ID = 10616
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 

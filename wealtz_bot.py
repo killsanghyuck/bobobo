@@ -32,7 +32,7 @@ AREA_NAME = '구의웰츠'
 #주차장ID
 AREA_ID = 11641
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/psq/Documents/bot/webdriver/chromedriver')
 driver.implicitly_wait(3)
 
 
