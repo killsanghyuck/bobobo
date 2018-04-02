@@ -18,7 +18,7 @@ LOGIN_INFO = {
 }
 HOST_URL = 'https://parking.kakao.com/admin'
 #웹할인 페이지
-PARK_HOST_URL = 'http://npgsgranparkingroot.iptime.org'
+PARK_HOST_URL = 'http://npgsgranparkingroot1.iptime.org'
 LOGIN_URL = '/j_spring_security_check'
 SEARCH_CAR_NUMBER_URL = '/ezTicket/carSearch'
 SEARCH_TICKET_URL = '/ezTicket/carTicket'
