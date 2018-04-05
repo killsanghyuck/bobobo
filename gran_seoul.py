@@ -2,6 +2,7 @@
 
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import sys
 import time
@@ -10,6 +11,10 @@ import json
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
 
 #웹할인 페이지 계정
 LOGIN_INFO = {
@@ -40,7 +45,7 @@ COUPONS = [{ 'id': 60, 'name': '30분쿠폰', 'value': 30 },
 AREA_NAME = '그랑서울'
 AREA_ID = 1804
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver', chrome_options=options)
 driver.implicitly_wait(3)
 
 def admin_login():

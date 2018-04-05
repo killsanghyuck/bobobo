@@ -2,12 +2,17 @@
 
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 import sys
 import time
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
+
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
 
 #웹할인 페이지 계정
 LOGIN_INFO = {
@@ -31,7 +36,7 @@ LIST_FIND = '/discount/discount_list.asp'
 AREA_NAME = 'L7'
 AREA_ID = 11835
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver', chrome_options=options)
 driver.implicitly_wait(3)
 
 
