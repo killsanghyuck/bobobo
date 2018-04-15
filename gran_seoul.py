@@ -61,7 +61,7 @@ class GranSeoulBot(BotInterface):
             for tr in soup.select('table tbody tr'):
                 if self.k_car_num != tr.select('a')[0].text: continue
                 self.real_ti = tr.select('input')[0].get('value')
-                self.real_ti = datetime.datetime.strptime(str(real_ti), "%Y%m%d%H%M%S")
+                self.real_ti = datetime.datetime.strptime(str(self.real_ti), "%Y%m%d%H%M%S")
                 if self.real_ti.strftime("%Y-%m-%d") != self.ti.strftime("%Y-%m-%d"): continue
                 set_duration(self)
                 get_park_code(self)
@@ -107,7 +107,7 @@ class GranSeoulBot(BotInterface):
         self.duration -= to.hour * 60
         self.duration -= (to.minute / 30) * 30        
 
-    def get_park_code(k_car_num, real_ti):
+    def get_park_code(self):
         get_park_req = self.s.post(PARK_HOST_URL + GET_PARK_CODE_URL, data={'car_no': self.k_car_num, 'car__totaldate': self.real_ti.strftime('%Y%m%d%H%M%S')})
         soup = BeautifulSoup(get_park_req.content, 'html.parser')
         self.park_code = soup.find(id='park_code').get('value')
