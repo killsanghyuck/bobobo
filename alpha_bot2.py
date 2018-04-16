@@ -10,25 +10,25 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://211.218.27.110:8090'
+PARK_HOST_URL = 'http://220.120.200.94:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
 LIST_FIND = '/discount/discount_list.asp'
 LOGIN_INFO = {
-    'user_id': 'kakaot',
+    'user_id': 'kakaot00',
     'password': '123456'
 }
-AREA_ID = '2878'
+AREA_ID = '11823'
 
-class RiverTowerBot(BotInterface):    
-    
+class AlphaBot2(BotInterface):
+
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.discount_id = 15
-        self.s = requests.Session()        
-            
+        self.s = requests.Session()
+
     def login(self):
         login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
         if login_req.status_code == 200:
@@ -40,7 +40,7 @@ class RiverTowerBot(BotInterface):
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
             tr_list = soup.select('table')[3].select('tr')
-            if len(tr_list) > 2:                
+            if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
                         enter_car = tr_list[i].select('td')[1]
@@ -56,7 +56,7 @@ class RiverTowerBot(BotInterface):
                             flag = True
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
-                            flag = True                    
+                            flag = True
         return flag
 
     def process(self):
@@ -72,13 +72,13 @@ class RiverTowerBot(BotInterface):
             }
             add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
             return True
-                
+
         def list_find(self):
             return True
-            
+
         if add_action(self) and list_find(self): flag = True
-        return flag    
-        
-    @staticmethod    
+        return flag
+
+    @staticmethod
     def area_id():
         return AREA_ID

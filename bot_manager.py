@@ -9,7 +9,8 @@ import time
 import datetime
 
 #bot_list
-from alpha_bot import AlphaBot
+from alpha_bot1 import AlphaBot1
+from alpha_bot2 import AlphaBot2
 from city_plz_bot import CityPlzBot
 from dsme_bot import DsmeBot
 from gran_seoul import GranSeoulBot
@@ -44,6 +45,7 @@ def admin_login():
     driver.find_element_by_name('commit').click()
 
 def reservation_bot():
+    pick_list = []
     driver.get(HOST_URL + '/picks?q[state_eq]=4&order=id_desc')
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
@@ -81,13 +83,9 @@ def reservation_bot():
                             print(pick.text + ' : ' + '입차확인불가 : ' + reservation['k_car_num'])
                     else:
                         print('로그인실패 : ' + area_id)
-                
-                    
+
+
 admin_login()
-while True:            
+while True:
     reservation_bot()
     time.sleep(300)
-                
-                
-                
-                

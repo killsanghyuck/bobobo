@@ -36,7 +36,7 @@ class GranSeoulBot(BotInterface):
     def __init__(self, reservation):
         self.real_ti = ''
         self.park_code = ''
-        self.click_count = ''
+        self.click_count = 0
         self.order = { 'discount_value': 0,
                          'discount_name': [],
                          'discount_code': [],
@@ -63,32 +63,32 @@ class GranSeoulBot(BotInterface):
                 self.real_ti = tr.select('input')[0].get('value')
                 self.real_ti = datetime.datetime.strptime(str(self.real_ti), "%Y%m%d%H%M%S")
                 if self.real_ti.strftime("%Y-%m-%d") != self.ti.strftime("%Y-%m-%d"): continue
-                set_duration(self)
-                get_park_code(self)
+                self.set_duration()
+                self.get_park_code()
                 flag = True
                 break
         return flag
         
     def process(self):
         flag = False
-        make_order(self)
-        submit_coupon(self)
-        flag = submit_coupon_success(self)
+        self.make_order()
+        self.submit_coupon()
+        flag = self.submit_coupon_success()
         return flag
-
-    def make_order(self):                
+    
+    def make_order(self):        
         coupon_times = list(map(lambda i: i['value'], COUPONS))
         duration = self.duration
         while duration > 0 and not not coupon_times:
             if duration >= coupon_times[-1]:
               coupon = list(filter(lambda i: i['value'] == coupon_times[-1], COUPONS))[0]
-              add_coupon(self, coupon)
+              self.add_coupon(coupon)
               duration -= coupon['value']
             else:
               coupon_times.pop()
-        if not duration > 0: return order
+        if not duration > 0: return True
         coupon = list(filter(lambda i: i['value'] == 30, COUPONS))[0]
-        add_coupon(self, coupon)
+        self.add_coupon(coupon)
         return True
 
     def add_coupon(self, coupon):
@@ -102,11 +102,11 @@ class GranSeoulBot(BotInterface):
         return True
 
     def set_duration(self):
-        to = real_ti + datetime.timedelta(minutes = self.duration)
+        to = self.real_ti + datetime.timedelta(minutes = self.duration)
         if to.day == self.real_ti.day: return True
         self.duration -= to.hour * 60
         self.duration -= (to.minute / 30) * 30        
-
+    
     def get_park_code(self):
         get_park_req = self.s.post(PARK_HOST_URL + GET_PARK_CODE_URL, data={'car_no': self.k_car_num, 'car__totaldate': self.real_ti.strftime('%Y%m%d%H%M%S')})
         soup = BeautifulSoup(get_park_req.content, 'html.parser')
@@ -125,7 +125,7 @@ class GranSeoulBot(BotInterface):
                  'discount_value': self.order['discount_value'],
                  'discount_desc': ','.join(str(v) for v in self.order['discount_desc']) }
         self.s.post(PARK_HOST_URL + SUBMIT_COUPON_URL, data=params)
-
+    
     def submit_coupon_success(self):
         response = self.s.post(PARK_HOST_URL + SEARCH_TICKET_URL)
         if not response.status_code == 200: return False
