@@ -32,7 +32,7 @@ class LotteCityHotelMapoBot(BotInterface):
         self.duration = reservation['duration']
         self.discount_id = 401
         self.s = requests.Session()
-        
+
     def login(self):
         login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
         if login_req.status_code == 200:
@@ -42,6 +42,7 @@ class LotteCityHotelMapoBot(BotInterface):
         flag = False
         find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date, 'iLotArea': 81})
         data = json.loads(find_req.content)
+        self.returned_car_no = ''
         if len(data) >= 1:
             self.id = data[0]['id']
             self.i_lot_area = data[0]['iLotArea']
@@ -49,7 +50,7 @@ class LotteCityHotelMapoBot(BotInterface):
 
         if self.returned_car_no == self.k_car_num: flag = True
         return flag
-        
+
     def process(self):
         flag = False
         def add_action(self):
@@ -67,21 +68,20 @@ class LotteCityHotelMapoBot(BotInterface):
         def list_find(k_car_num):
             flag = False
             LIST_FIND_PARAMS = {
-                'startDate': TODAY,
-                'endDate': TODAY,
+                'startDate': self.entry_date,
+                'endDate': self.entry_date,
                 'account_no': 'parkhere81',
                 'carno': self.k_car_num,
                 'iLotArea': 81
             }
             list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
-            results = json.loads(find_req.content)
+            results = json.loads(list_req.content)
             results = results['data']
             if results[0]['carno'] == self.k_car_num: flag = True
             return flag
-            
-        if add_action(self) and list_find(self): flag = True
-        return flag 
 
-    @staticmethod    
+        if add_action(self) and list_find(self): flag = True
+        return flag
+
     def area_id():
         return AREA_ID
