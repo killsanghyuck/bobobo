@@ -74,7 +74,10 @@ def reservation_bot():
                         if bot.find_car_number():
                             if bot.process():
                                 print(pick.text + ' : ' + '차량등록 완료 : ' + reservation['k_car_num'])
-                                driver.find_element_by_class_name('select2-choice').click()
+                                try:
+                                    driver.find_element_by_class_name('select2-choice').click()
+                                except:
+                                    return
                                 driver.find_element_by_id('select2-result-label-3').click()
                                 driver.find_element_by_name('commit').click()
                             else:
