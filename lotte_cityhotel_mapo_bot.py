@@ -83,5 +83,6 @@ class LotteCityHotelMapoBot(BotInterface):
         if add_action(self) and list_find(self): flag = True
         return flag
 
+    @staticmethod
     def area_id():
         return AREA_ID
