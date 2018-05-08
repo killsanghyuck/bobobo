@@ -30,7 +30,10 @@ class LotteCityHotelMapoBot(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        self.discount_id = 401
+        if self.duration == 1440:
+            self.discount_id = 401
+        elif self.duration == 360:
+            self.discount_id = 300
         self.s = requests.Session()
 
     def login(self):
@@ -66,18 +69,18 @@ class LotteCityHotelMapoBot(BotInterface):
             return True
 
         def list_find(k_car_num):
-            flag = False
-            LIST_FIND_PARAMS = {
-                'startDate': self.entry_date,
-                'endDate': self.entry_date,
-                'account_no': 'parkhere81',
-                'carno': self.k_car_num,
-                'iLotArea': 81
-            }
-            list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
-            results = json.loads(list_req.content)
-            results = results['data']
-            if results[0]['carno'] == self.k_car_num: flag = True
+            flag = True
+            # LIST_FIND_PARAMS = {
+            #     'startDate': self.entry_date,
+            #     'endDate': self.entry_date,
+            #     'account_no': 'parkhere81',
+            #     'carno': self.k_car_num,
+            #     'iLotArea': 81
+            # }
+            # list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+            # results = json.loads(list_req.content)
+            # results = results['data']
+            # if results[0]['carno'] == self.k_car_num: flag = True
             return flag
 
         if add_action(self) and list_find(self): flag = True

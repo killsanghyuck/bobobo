@@ -45,7 +45,7 @@ class GranSeoulBot(BotInterface):
         self.ti = reservation['ti']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        
+
         self.s = requests.Session()
 
     def login(self):
@@ -68,15 +68,15 @@ class GranSeoulBot(BotInterface):
                 flag = True
                 break
         return flag
-        
+
     def process(self):
         flag = False
         self.make_order()
         self.submit_coupon()
         flag = self.submit_coupon_success()
         return flag
-    
-    def make_order(self):        
+
+    def make_order(self):
         coupon_times = list(map(lambda i: i['value'], COUPONS))
         duration = self.duration
         while duration > 0 and not not coupon_times:
@@ -105,8 +105,8 @@ class GranSeoulBot(BotInterface):
         to = self.real_ti + datetime.timedelta(minutes = self.duration)
         if to.day == self.real_ti.day: return True
         self.duration -= to.hour * 60
-        self.duration -= (to.minute / 30) * 30        
-    
+        self.duration -= (to.minute / 30) * 30
+
     def get_park_code(self):
         get_park_req = self.s.post(PARK_HOST_URL + GET_PARK_CODE_URL, data={'car_no': self.k_car_num, 'car__totaldate': self.real_ti.strftime('%Y%m%d%H%M%S')})
         soup = BeautifulSoup(get_park_req.content, 'html.parser')
@@ -125,7 +125,7 @@ class GranSeoulBot(BotInterface):
                  'discount_value': self.order['discount_value'],
                  'discount_desc': ','.join(str(v) for v in self.order['discount_desc']) }
         self.s.post(PARK_HOST_URL + SUBMIT_COUPON_URL, data=params)
-    
+
     def submit_coupon_success(self):
         response = self.s.post(PARK_HOST_URL + SEARCH_TICKET_URL)
         if not response.status_code == 200: return False
@@ -134,7 +134,7 @@ class GranSeoulBot(BotInterface):
             tr = ','.join(str(v) for v in tr)
             if str(self.duration) in tr and self.k_car_num in tr: return True
         return False
-        
+
     @staticmethod
     def area_id():
         return AREA_ID
