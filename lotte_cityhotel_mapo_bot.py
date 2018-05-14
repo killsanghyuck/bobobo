@@ -33,7 +33,7 @@ class LotteCityHotelMapoBot(BotInterface):
         if self.duration == 1440:
             self.discount_id = 401
         elif self.duration == 360:
-            self.discount_id = 300
+            self.discount_id = 400        
         self.s = requests.Session()
 
     def login(self):
