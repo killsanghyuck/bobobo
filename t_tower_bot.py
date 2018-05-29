@@ -12,25 +12,25 @@ from bot_interface import BotInterface
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-PARK_HOST_URL = 'http://183.109.120.159'
+PARK_HOST_URL = 'http://121.128.222.164'
 LOGIN_URL = '/login'
 SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
-LIST_FIND = '/discount/state/list/doListMst'
+LIST_FIND = '/state/list'
 LOGIN_INFO = {
     'userId': 'kakaot',
     'userPwd': '123456'
 }
-AREA_ID = '433'
+AREA_ID = '9953'
 
 CORP_NAME = '파킹스퀘어'
 
-class PodoMallBot(BotInterface):
+class TtowerBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        self.discount_id = 11
+        self.discount_id = 3
         self.s = requests.Session()
 
     def login(self):
@@ -40,7 +40,7 @@ class PodoMallBot(BotInterface):
 
     def find_car_number(self):
         flag = False
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date, 'iLotArea': 81})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date})
         data = json.loads(find_req.content)
         self.returned_car_no = ''
         if len(data) >= 1:
@@ -66,12 +66,14 @@ class PodoMallBot(BotInterface):
             return True
 
         def list_find(k_car_num):
-            flag = True
+            flag = False
             LIST_FIND_PARAMS = {
                 'startDate': self.entry_date,
+                'startTime': '00:00',
                 'endDate': self.entry_date,
-                'account_no': 'kakaot',
-                'carno': self.k_car_num                
+                'endTime': '23:59',
+                'searchField': 'carNo',
+                'searchText': self.k_car_num
             }
             list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
             results = json.loads(list_req.content)
