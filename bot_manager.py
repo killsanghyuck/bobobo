@@ -22,6 +22,7 @@ from namsan_bot import NamsanBot
 from river_tower_bot import RiverTowerBot
 from wealtz_bot import WealtzBot
 from signature_bot import SignatureBot
+from seosomoon_bot import seoSoMoonBot
 from podo_mall_bot import PodoMallBot
 
 options = Options()
