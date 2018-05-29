@@ -21,14 +21,14 @@ LOGIN_INFO = {
 }
 AREA_ID = '11839'
 
-class DsmeBot(BotInterface):    
-    
+class DsmeBot(BotInterface):
+
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.discount_id = 11
-        self.s = requests.Session()        
-            
+        self.s = requests.Session()
+
     def login(self):
         login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
         if login_req.status_code == 200:
@@ -40,7 +40,7 @@ class DsmeBot(BotInterface):
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
             tr_list = soup.select('table')[3].select('tr')
-            if len(tr_list) > 2:                
+            if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
                         enter_car = tr_list[i].select('td')[1]
@@ -49,14 +49,14 @@ class DsmeBot(BotInterface):
                     if enter_car == 'null':
                         flag = False
                     else:
-                        car_num = tr_list[i].select('td')[1].text.strip()
+                        car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
-                            flag = True                    
+                            flag = True
         return flag
 
     def process(self):
@@ -72,13 +72,13 @@ class DsmeBot(BotInterface):
             }
             add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
             return True
-                
+
         def list_find(self):
             return True
-            
+
         if add_action(self) and list_find(self): flag = True
-        return flag    
-        
-    @staticmethod    
+        return flag
+
+    @staticmethod
     def area_id():
         return AREA_ID
