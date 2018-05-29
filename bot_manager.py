@@ -24,6 +24,7 @@ from wealtz_bot import WealtzBot
 from signature_bot import SignatureBot
 from seosomoon_bot import SeoSoMoonBot
 from podo_mall_bot import PodoMallBot
+from t_tower_bot import TtowerBot
 
 options = Options()
 options.add_argument('--headless')
