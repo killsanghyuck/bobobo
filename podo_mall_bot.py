@@ -23,7 +23,7 @@ LOGIN_INFO = {
 }
 AREA_ID = '433'
 
-CORP_NAME = '파킹스퀘어'
+CORP_NAME = '카카오T'
 
 class PodoMallBot(BotInterface):
     def __init__(self, reservation):
@@ -40,7 +40,7 @@ class PodoMallBot(BotInterface):
 
     def find_car_number(self):
         flag = False
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date, 'iLotArea': 81})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date})
         data = json.loads(find_req.content)
         self.returned_car_no = ''
         if len(data) >= 1:
