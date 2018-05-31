@@ -69,19 +69,19 @@ class TtowerBot(BotInterface):
             return True
 
         def list_find(k_car_num):
-            flag = False
-            LIST_FIND_PARAMS = {
-                'startDate': self.entry_date,
-                'startTime': '00:00',
-                'endDate': self.entry_date,
-                'endTime': '23:59',
-                'searchField': 'carNo',
-                'searchText': self.k_car_num
-            }
-            list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
-            results = json.loads(list_req.content)
-            results = results['data']
-            if results[0]['carno'] == self.k_car_num: flag = True
+            flag = True
+            # LIST_FIND_PARAMS = {
+            #     'startDate': self.entry_date,
+            #     'startTime': '00:00',
+            #     'endDate': self.entry_date,
+            #     'endTime': '23:59',
+            #     'searchField': 'carNo',
+            #     'searchText': self.k_car_num
+            # }
+            # list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+            # results = json.loads(list_req.content)
+            # results = results['data']
+            # if results[0]['carno'] == self.k_car_num: flag = True
             return flag
 
         if add_action(self) and list_find(self): flag = True

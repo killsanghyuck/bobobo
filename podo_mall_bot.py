@@ -67,21 +67,24 @@ class PodoMallBot(BotInterface):
 
         def list_find(k_car_num):
             flag = True
-            LIST_FIND_PARAMS = {
-                'startDate': self.entry_date,
-                'endDate': self.entry_date,
-                'account_no': 'kakaot',
-                'carno': self.k_car_num                
-            }
-            list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
-            results = json.loads(list_req.content)
-            results = results['data']
-            if results[0]['carno'] == self.k_car_num: flag = True
+        #     LIST_FIND_PARAMS = {
+        #         'startDate': self.entry_date,
+        #         'endDate': self.entry_date,
+        #         'account_no': 'kakaot',
+        #         'carno': self.k_car_num
+        #     }
+        #     list_req = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+        #     results = json.loads(list_req.content)
+        #     results = results['data']
+        #     if results[0]['carno'] == self.k_car_num: flag = True
+        #     return flag
+        #
+        # if add_action(self) and list_find(self): flag = True
             return flag
 
         if add_action(self) and list_find(self): flag = True
         return flag
-
+        
     @staticmethod
     def area_id():
         return AREA_ID
