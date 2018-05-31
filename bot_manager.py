@@ -94,7 +94,7 @@ def reservation_bot():
                         else:
                             print(pick.text + ' : ' + '입차확인불가 : ' + reservation['k_car_num'])
                     else:
-                        print('로그인실패 : ' + area_id)
+                        print('로그인실패 : ' + pick.text)
 
 
 admin_login()

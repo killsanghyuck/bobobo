@@ -30,9 +30,12 @@ class AlphaBot1(BotInterface):
         self.s = requests.Session()
 
     def login(self):
-        login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
-        if login_req.status_code == 200:
+        try:
+            login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
             return True
+        except requests.exceptions.ConnectionError:
+            print 'connection error'
+            return False
 
     def find_car_number(self):
         find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'license_plate_number': self.k_car_num[-4:]})
