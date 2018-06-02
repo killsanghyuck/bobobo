@@ -11,14 +11,13 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://125.131.138.11'
-AREA_ID = '11863'
+PARK_HOST_URL = 'http://1.230.226.2'
 
-CORP_NAME = '파킹스퀘어'
+AREA_ID = '10558'
 driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
 driver.implicitly_wait(3)
 
-class UrbanBot(BotInterface):
+class GvalleyBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
@@ -26,27 +25,29 @@ class UrbanBot(BotInterface):
 
     def login(self):
         driver.get(PARK_HOST_URL)
-        driver.find_element_by_name('login_id').send_keys('kakaot')
-        driver.find_element_by_name('login_pw').send_keys('123456')
-        driver.find_element_by_xpath("//*[text()='로그인']").click()
+        driver.find_element_by_name('user_email').send_keys(u'파크히어')
+        driver.find_element_by_id('password').send_keys('parkhere')
+        driver.find_element_by_class_name('button1').click()
         try:
-            driver.find_element_by_xpath("//*[text()='주차할인']")
+            driver.find_element_by_xpath("//*[text()='등록']")
             return True
         except:
             return False
 
     def find_car_number(self):
         flag = False
-        driver.find_element_by_name('carNumber').send_keys(self.k_car_num[-4:])
+
+        driver.find_element_by_name('search_car_id').send_keys(self.k_car_num[-4:])
         driver.find_element_by_xpath("//*[text()='검색']").click()
+
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
         car_list = soup.select('table tbody tr')
-        car = car_list[0]
-        if len(car_list) >= 1:
+
+        if len(car_list) >= 2:
             for car in car_list:
                 if self.k_car_num == car.select('td')[1].text:
-                    driver.find_element_by_xpath("//*[text()='" + self.k_car_num + "']").click()
+                    driver.find_element_by_xpath("//input[@value='"+car.select('td')[0].select('input')[0]['value']+"']").click()
                     flag = True
         return flag
 
@@ -57,7 +58,8 @@ class UrbanBot(BotInterface):
         return flag
 
     def add_action(self):
-        driver.find_element_by_name('chk_info').click()
+        driver.find_element_by_id('button_discount_4').click()
+
         return True
 
     def list_find(self):
