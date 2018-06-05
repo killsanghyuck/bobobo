@@ -25,6 +25,12 @@ from signature_bot import SignatureBot
 from seosomoon_bot import SeoSoMoonBot
 from podo_mall_bot import PodoMallBot
 from t_tower_bot import TtowerBot
+from dongil_bot import DongilBot
+from tsone_bot import TsoneBot
+from urban_bot import UrbanBot
+from seoulsq_bot import SeoulsqBot
+from gvalley_bot import GvalleyBot
+from vplex_bot import VplexBot
 
 options = Options()
 options.add_argument('--headless')
