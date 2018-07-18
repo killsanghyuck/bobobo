@@ -52,7 +52,7 @@ class AlphaBot1(BotInterface):
                     if enter_car == 'null':
                         flag = False
                     else:
-                        car_num = tr_list[i].select('td')[1].text.strip()
+                        car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
