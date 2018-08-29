@@ -11,13 +11,12 @@ options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver', options=options)
-
+driver = webdriver.Chrome('/Users/blain1/Documents/chromedriver', options=options)
 KAKAO_ID = 'san.kill'
 KAKAO_PW = '!@dl926516'
 
 HOST_URL = 'https://parking.kakao.com/admin'
-
+NON_ADMIN_HOST_URL = 'https://parking.kakao.com'
 all_jobs = []
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
 
@@ -29,13 +28,14 @@ def admin_login():
 
 
 def find_area():
-    for page in range(1,8):
+    for page in range(1,7):
         driver.get(HOST_URL + '/gear_companies/parks?page=' + str(page))
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
         #픽 id값과 리스트
-        pick_list = soup.select('table > tbody > tr')
-        for area in pick_list:
+        area_list = soup.select('table > tbody > tr')
+        for area in area_list:
+            area_id = area.select('td.col-id > a')
             if len(area.select('td > span.label-danger')) == 1:
                 id = area.select('td')[0].text
                 name = area.select('td')[1].text
@@ -44,12 +44,23 @@ def find_area():
                 id = area.select('td')[0].text
                 name = area.select('td')[1].text
                 print '%s, %s, %s, warning' %(id, name, str(page))
+                area_id = area.select('td.col-id > a')
+            if len(area_id) >= 1:
+                id = area.select('td')[0].text
+                name = area.select('td')[1].text
+                driver.get(NON_ADMIN_HOST_URL + area_id[0]['href'].replace('picks', 'inouts'))
+                html = driver.page_source
+                soup = BeautifulSoup(html, 'html.parser')
+                first_inout = soup.select('table > tbody > tr')
+                if len(first_inout) >= 1:
+                    last_inout = soup.select('table > tbody > tr')[0].select('td')[1].text
+                    last_inout_date = soup.select('table > tbody > tr')[0].select('td')[0].text
+                    inout_count = soup.select('table > tbody')[0].text.count(last_inout)
+                    if inout_count >= 90:
+                        print u'-----------------------------------%s, %s, %s, %s, %i' %(id, name, last_inout ,last_inout_date, inout_count)
 
-while True:
-    find_area()
-    time.sleep(300)
-
-    find . -type f -exec sed -i 's/cultureground/wannago/g' {} \
+admin_login()
+find_area()
 
 
 # green = []

@@ -25,18 +25,12 @@ from signature_bot import SignatureBot
 from seosomoon_bot import SeoSoMoonBot
 from podo_mall_bot import PodoMallBot
 from t_tower_bot import TtowerBot
-from dongil_bot import DongilBot
-from tsone_bot import TsoneBot
-from urban_bot import UrbanBot
-from seoulsq_bot import SeoulsqBot
-from gvalley_bot import GvalleyBot
-from vplex_bot import VplexBot
 
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 
-driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
+driver = webdriver.Chrome('/Users/blain1/Documents/chromedriver', options=options)
 driver.implicitly_wait(3)
 
 #카카오 어드민 계정
@@ -65,7 +59,11 @@ def reservation_bot():
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     pick_list2 = soup.select('table#index_table_picks > tbody > tr > td.col-id')
-    pick_list = pick_list + pick_list2
+    driver.get(HOST_URL + '/picks?q[state_eq]=4&page=3&order=id_desc')
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+    pick_list3 = soup.select('table#index_table_picks > tbody > tr > td.col-id')
+    pick_list = pick_list + pick_list2 + pick_list3
     if len(pick_list) >= 1:
         for pick in pick_list:
             driver.get(HOST_URL + '/picks/' + pick.text)
@@ -101,7 +99,6 @@ def reservation_bot():
                             print(pick.text + ' : ' + '입차확인불가 : ' + reservation['k_car_num'])
                     else:
                         print('로그인실패 : ' + pick.text)
-
 
 admin_login()
 while True:
