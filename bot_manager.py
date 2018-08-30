@@ -25,6 +25,13 @@ from signature_bot import SignatureBot
 from seosomoon_bot import SeoSoMoonBot
 from podo_mall_bot import PodoMallBot
 from t_tower_bot import TtowerBot
+from ddmc_bot import DdmcBot
+from sahakbusan_bot import SahakBusanBot
+from jongro_sc_bot import JongroScBot
+from alpha_dom_bot import AlphaDomBot
+from dongil_tower_bot import DongilTowerBot
+from canko_yangjae_bot import CamkoYangjaeBot
+from jail_op_bot import JailOpBot
 
 options = Options()
 options.add_argument('--headless')
