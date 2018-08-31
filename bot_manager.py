@@ -30,7 +30,7 @@ from sahakbusan_bot import SahakBusanBot
 from jongro_sc_bot import JongroScBot
 from alpha_dom_bot import AlphaDomBot
 from dongil_tower_bot import DongilTowerBot
-from canko_yangjae_bot import CamkoYangjaeBot
+from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
 
 options = Options()
