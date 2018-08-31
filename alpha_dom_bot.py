@@ -10,7 +10,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://220.120.200.94:8090'
+PARK_HOST_URL = 'http://211.244.169.66:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -26,6 +26,7 @@ class AlphaDomBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
+        self.duration = reservation['duration']
         if self.duration == 600:
             self.discount_id = '07'
         elif self.duration == 900:
