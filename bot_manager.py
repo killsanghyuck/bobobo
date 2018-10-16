@@ -57,20 +57,11 @@ def admin_login():
 
 def reservation_bot():
     pick_list = []
-    driver.get(HOST_URL + '/picks?q[state_eq]=4&order=id_desc')
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    #픽 id값과 리스트
-    pick_list = soup.select('table#index_table_picks > tbody > tr > td.col-id')
-    driver.get(HOST_URL + '/picks?q[state_eq]=4&page=2&order=id_desc')
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    pick_list2 = soup.select('table#index_table_picks > tbody > tr > td.col-id')
-    driver.get(HOST_URL + '/picks?q[state_eq]=4&page=3&order=id_desc')
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    pick_list3 = soup.select('table#index_table_picks > tbody > tr > td.col-id')
-    pick_list = pick_list + pick_list2 + pick_list3
+    for i in range(1, 6):
+        driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        pick_list += soup.select('table#index_table_picks > tbody > tr > td.col-id')
     if len(pick_list) >= 1:
         for pick in pick_list:
             driver.get(HOST_URL + '/picks/' + pick.text)
