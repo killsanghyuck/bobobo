@@ -11,7 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://222.110.71.204:8090'
+PARK_HOST_URL = 'http://121.162.87.131:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -27,7 +27,7 @@ class DdmcBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 07
+        self.discount_id = '07'
         self.s = requests.Session()
 
     def login(self):
