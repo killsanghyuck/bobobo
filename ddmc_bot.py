@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import time
+import datetime
 from bot_interface import BotInterface
 
 reload(sys)
@@ -54,10 +55,12 @@ class DdmcBot(BotInterface):
                     else:
                         car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
-                        if car_num == self.k_car_num and len(parking_time) == 5:
+                        parking_enter_time = tr_list[i].select('td')[2].text.strip()
+                        parking_enter_time = datetime.datetime.strptime(str(parking_enter_time), "%Y-%m-%d %H:%M:%S")
+                        if car_num == self.k_car_num and len(parking_time) == 5 and self.entry_date < parking_enter_time:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
-                        elif car_num == self.k_car_num and parking_time > '20':
+                        elif car_num == self.k_car_num and parking_time > '20' and self.entry_date < parking_enter_time:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
         return flag
