@@ -26,7 +26,7 @@ class DdmcBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['ti']
         self.discount_id = '07'
         self.s = requests.Session()
 
