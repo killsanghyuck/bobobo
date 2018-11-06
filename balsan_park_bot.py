@@ -50,9 +50,7 @@ class BalsanParkBot(BotInterface):
             car_find = soup.select('table')[1].select('tr')[2].select('td')[1].text
             self.pKey = find_req.url.split('?')[1].split('&')[0]
             if self.k_car_num in car_find:
-              flag = True            
-        else:
-
+              flag = True
         return flag
 
     def process(self):
@@ -67,7 +65,7 @@ class BalsanParkBot(BotInterface):
           return True
         return False
 
-    def list_find(self):   
+    def list_find(self):
         LIST_FIND_PARAMS = {
             'from': self.entry_date,
             'fromHH': '00',
@@ -82,7 +80,7 @@ class BalsanParkBot(BotInterface):
         response = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
-            if self.k_car_num in soup.text:              
+            if self.k_car_num in soup.text:
               return True
         return False
 
