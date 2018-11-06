@@ -51,6 +51,13 @@ class BalsanParkBot(BotInterface):
             self.pKey = find_req.url.split('?')[1].split('&')[0]
             if self.k_car_num in car_find:
               flag = True
+        else:
+            soup = BeautifulSoup(find_req.content, 'html.parser')
+            tr_list = soup.select('table')[1].select('tr')
+            for tr in tr_list:
+                if self.k_car_num in tr.text:
+                    self.pKey = tr['onclick'].split('?')[1][:-1]
+                    flag = True
         return flag
 
     def process(self):
