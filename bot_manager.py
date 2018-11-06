@@ -32,6 +32,8 @@ from alpha_dom_bot import AlphaDomBot
 from dongil_tower_bot import DongilTowerBot
 from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
+from gmg_bot import GmgBot
+from balsan_park_bot import BalsanParkBot
 
 options = Options()
 options.add_argument('--headless')
