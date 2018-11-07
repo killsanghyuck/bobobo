@@ -45,19 +45,19 @@ class BalsanParkBot(BotInterface):
         #find_req = s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': k_car_num[-4:], 'from': entry_date, 'fromHH': '00' })
         find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': self.k_car_num[-4:], 'from': self.entry_date, 'fromHH': '00' })
         flag = False
-        if find_req.history[0].status_code == 302:
-            soup = BeautifulSoup(find_req.content, 'html.parser')
-            car_find = soup.select('table')[1].select('tr')[2].select('td')[1].text
-            self.pKey = find_req.url.split('?')[1].split('&')[0]
-            if self.k_car_num in car_find:
-              flag = True
-        else:
+        if find_req.history == []:
             soup = BeautifulSoup(find_req.content, 'html.parser')
             tr_list = soup.select('table')[1].select('tr')
             for tr in tr_list:
                 if self.k_car_num in tr.text:
                     self.pKey = tr['onclick'].split('?')[1][:-1]
                     flag = True
+        elif find_req.history[0].status_code == 302:
+            soup = BeautifulSoup(find_req.content, 'html.parser')
+            car_find = soup.select('table')[1].select('tr')[2].select('td')[1].text
+            self.pKey = find_req.url.split('?')[1].split('&')[0]
+            if self.k_car_num in car_find:
+              flag = True           
         return flag
 
     def process(self):
