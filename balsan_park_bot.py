@@ -84,7 +84,7 @@ class BalsanParkBot(BotInterface):
             'dCriterion': u'입차기준',
             'remark': ''
         }
-        response = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+        response = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             if self.k_car_num in soup.text:

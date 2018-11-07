@@ -50,14 +50,14 @@ class GmgBot(BotInterface):
             car_find = soup.select('table')[1].select('tr')[2].select('td')[1].text
             self.pKey = find_req.url.split('?')[1].split('&')[0]
             if self.k_car_num in car_find:
-              flag = True                    
+              flag = True
         else:
             soup = BeautifulSoup(find_req.content, 'html.parser')
             tr_list = soup.select('table')[1].select('tr')
             for tr in tr_list:
                 if self.k_car_num in tr.text:
                     self.pKey = tr['onclick'].split('?')[1][:-1]
-                    flag = True                    
+                    flag = True
         return flag
 
     def process(self):
@@ -84,7 +84,7 @@ class GmgBot(BotInterface):
             'dCriterion': u'입차기준',
             'remark': ''
         }
-        response = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+        response = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             if self.k_car_num in soup.text:
