@@ -73,7 +73,7 @@ def reservation_bot():
             car_number = soup.select('table > tbody > tr.row-license_number > td')
             area_id = soup.select('table > tbody > tr.row-parking_lot > td > a')[0]['href'].split('/')[3]
             k_car_num = car_number[0].encode_contents().strip().replace(' ', '').split("<br/>")[0]
-            ti = soup.select('table > tbody > tr.row-created_at > td')[0].text
+            ti = soup.select('table > tbody > tr.row-created_at > td')[1].text
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
             if duration == '종일권':

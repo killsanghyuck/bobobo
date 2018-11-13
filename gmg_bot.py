@@ -24,7 +24,7 @@ class GmgBot(BotInterface):
 
     def __init__(self, reservation):
         #k_car_num = u''
-        #entry_date = u'2018-11-06'
+        #entry_date = u'2018-11-13'
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.discount_id = u'dCode=00009'
@@ -66,11 +66,12 @@ class GmgBot(BotInterface):
         return flag
 
     def add_action(self):
+        flag = False
         #add_req = s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + pKey + '&' + discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
         add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
         if add_req.history[0].status_code == 302:
-          return True
-        return False
+            flag = True          
+        return flag
 
     def list_find(self):
         LIST_FIND_PARAMS = {
@@ -84,12 +85,13 @@ class GmgBot(BotInterface):
             'dCriterion': u'입차기준',
             'remark': ''
         }
-        response = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+        flag = False
+        response = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             if self.k_car_num in soup.text:
-              return True
-        return False
+                flag = True              
+        return flag
 
 
     @staticmethod
