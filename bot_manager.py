@@ -95,7 +95,7 @@ def reservation_bot():
                                 driver.find_element_by_id('select2-result-label-4').click()
                                 driver.find_element_by_name('commit').click()
                             else:
-                                print(pick.text + ' : ' + '차량등록 완료 : ' + reservation['k_car_num'])
+                                print(pick.text + ' : ' + '차량등록 실패 : ' + reservation['k_car_num'])
                         else:
                             print(pick.text + ' : ' + '입차확인불가 : ' + reservation['k_car_num'])
                     else:
