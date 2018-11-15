@@ -57,7 +57,7 @@ class GmgBot(BotInterface):
             car_find = soup.select('table')[1].select('tr')[2].select('td')[1].text
             self.pKey = find_req.url.split('?')[1].split('&')[0]
             if self.k_car_num in car_find:
-              flag = True      
+              flag = True
         return flag
 
     def process(self):
@@ -70,7 +70,7 @@ class GmgBot(BotInterface):
         #add_req = s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + pKey + '&' + discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
         add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
         if add_req.history[0].status_code == 302:
-            flag = True          
+            flag = True
         return flag
 
     def list_find(self):
@@ -86,11 +86,11 @@ class GmgBot(BotInterface):
             'remark': ''
         }
         flag = False
-        response = s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
+        response = self.s.post(PARK_HOST_URL + LIST_FIND, data=LIST_FIND_PARAMS)
         if response.status_code == 200:
             soup = BeautifulSoup(response.content, 'html.parser')
             if self.k_car_num in soup.text:
-                flag = True              
+                flag = True
         return flag
 
 
