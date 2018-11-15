@@ -68,9 +68,8 @@ class GmgBot(BotInterface):
     def add_action(self):
         flag = False
         #add_req = s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + pKey + '&' + discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
-        add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
-        if add_req.history[0].status_code == 302:
-            flag = True
+        add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')        
+        flag = True
         return flag
 
     def list_find(self):
