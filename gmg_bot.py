@@ -62,7 +62,8 @@ class GmgBot(BotInterface):
 
     def process(self):
         flag = False
-        if self.add_action() and self.list_find(): flag = True
+        if self.add_action(): 
+            flag = True
         return flag
 
     def add_action(self):
