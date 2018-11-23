@@ -28,7 +28,6 @@ from t_tower_bot import TtowerBot
 from ddmc_bot import DdmcBot
 from sahakbusan_bot import SahakBusanBot
 from jongro_sc_bot import JongroScBot
-from alpha_dom_bot import AlphaDomBot
 from dongil_tower_bot import DongilTowerBot
 from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
@@ -87,13 +86,13 @@ def reservation_bot():
                     if bot.login():
                         if bot.find_car_number():
                             if bot.process():
-                                print(pick.text + ' : ' + '차량등록 완료 : ' + reservation['k_car_num'])
                                 try:
                                     driver.find_element_by_class_name('select2-choice').click()
                                 except:
                                     return
                                 driver.find_element_by_id('select2-result-label-4').click()
                                 driver.find_element_by_name('commit').click()
+                                print(pick.text + ' : ' + '차량등록 완료 : ' + reservation['k_car_num'])
                             else:
                                 print(pick.text + ' : ' + '차량등록 실패 : ' + reservation['k_car_num'])
                         else:
