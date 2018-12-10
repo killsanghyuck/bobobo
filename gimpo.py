@@ -6,10 +6,11 @@ import sys
 import time
 import datetime
 
-AREA_ID = [{ 'id': 1583344, 'name': '국내선 제1주차장' },
-        { 'id': 1582294, 'name': '국제선주차장' },
-        { 'id': 1583345, 'name': '국내선 제2주차장' },
-        { 'id': 1583346, 'name': '화물청사 주차장'}]
+AREA_ID = [{ 'id': 1583345, 'name': '국내선 제2주차장' },
+            { 'id': 1582294, 'name': '국제선주차장' },
+            { 'id': 1583346, 'name': '화물청사 주차장'},
+            { 'id': 1583344, 'name': '국내선 제1주차장' }
+        ]
 
 def gimpo_api():
     seoul_url = 'http://parking.seoul.go.kr/WCFB/ParklandWRT.svc/ParkStatPost'

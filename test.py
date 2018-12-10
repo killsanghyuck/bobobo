@@ -39,7 +39,7 @@ def find_area():
             if len(area.select('td > span.label-danger')) == 1:
                 id = area.select('td')[0].text
                 name = area.select('td')[1].text
-                print '%s, %s, %s, red' %(id, name, str(page))
+                print '////////// ////////// %s, %s, %s, red' %(id, name, str(page))
             elif len(area.select('td > span.label-warning')) == 1:
                 id = area.select('td')[0].text
                 name = area.select('td')[1].text
@@ -56,7 +56,7 @@ def find_area():
                     last_inout = soup.select('table > tbody > tr')[0].select('td')[1].text
                     last_inout_date = soup.select('table > tbody > tr')[0].select('td')[0].text
                     inout_count = soup.select('table > tbody')[0].text.count(last_inout)
-                    if inout_count >= 90:
+                    if inout_count == 100:
                         print u'-----------------------------------%s, %s, %s, %s, %i' %(id, name, last_inout ,last_inout_date, inout_count)
 
 admin_login()
