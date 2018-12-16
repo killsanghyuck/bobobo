@@ -34,6 +34,7 @@ from jail_op_bot import JailOpBot
 from gmg_bot import GmgBot
 from balsan_park_bot import BalsanParkBot
 from jump_bot import JumpBot
+from yzpark_bot import YzparkBot
 
 options = Options()
 options.add_argument('--headless')
