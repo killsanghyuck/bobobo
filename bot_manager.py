@@ -36,6 +36,7 @@ from balsan_park_bot import BalsanParkBot
 from jump_bot import JumpBot
 from yzpark_bot import YzparkBot
 from mallofk_bot import MallOfKBot
+from ace_tower_bot import AceTowerBot
 
 options = Options()
 options.add_argument('--headless')
