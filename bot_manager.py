@@ -9,34 +9,43 @@ import time
 import datetime
 
 #bot_list
+
+# 다래
 from alpha_bot1 import AlphaBot1
 from alpha_bot2 import AlphaBot2
 from city_plz_bot import CityPlzBot
 from dsme_bot import DsmeBot
-from gran_seoul import GranSeoulBot
 from han_no_bot import HanNoBot
 from hsbc_bot import HsbcBot
 from l7_hong_bot import L7HongBot
-from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
 from namsan_bot import NamsanBot
 from river_tower_bot import RiverTowerBot
 from wealtz_bot import WealtzBot
 from signature_bot import SignatureBot
 from seosomoon_bot import SeoSoMoonBot
-from podo_mall_bot import PodoMallBot
-from t_tower_bot import TtowerBot
 from ddmc_bot import DdmcBot
 from sahakbusan_bot import SahakBusanBot
 from jongro_sc_bot import JongroScBot
 from dongil_tower_bot import DongilTowerBot
 from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
-from gmg_bot import GmgBot
-from balsan_park_bot import BalsanParkBot
 from jump_bot import JumpBot
 from yzpark_bot import YzparkBot
 from mallofk_bot import MallOfKBot
+
+#aj
+from balsan_park_bot import BalsanParkBot
+from gmg_bot import GmgBot
+
+#아마노
 from ace_tower_bot import AceTowerBot
+from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
+from podo_mall_bot import PodoMallBot
+from sfc_bot import SFCBot
+from t_tower_bot import TtowerBot
+
+#넥스파
+from gran_seoul import GranSeoulBot
 
 options = Options()
 options.add_argument('--headless')
