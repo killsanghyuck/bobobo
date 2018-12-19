@@ -48,6 +48,7 @@ from the_k_bot import TheKBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
+from urban_bot import UrbanBot
 
 options = Options()
 options.add_argument('--headless')

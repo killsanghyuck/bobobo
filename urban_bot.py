@@ -1,10 +1,9 @@
 #-*- coding: utf-8 -*-
 
+import requests
 from bs4 import BeautifulSoup
 import sys
 import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from bot_interface import BotInterface
 
 reload(sys)
@@ -12,46 +11,43 @@ sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
 PARK_HOST_URL = 'http://125.131.138.11'
+LOGIN_URL = '/index.php/login/doLogin'
+SEARCH_CAR_NUMBER_URL = '/index.php/main/ajax_CarList'
+ADD_ACTION_URL = '/index.php/main/ajax_DisIns'
+LIST_FIND = '/discount/state/list/doListMst'
+LOGIN_INFO = {
+    'login_id': 'kakaot',
+    'login_pw': '123456',
+    'is_ajax': 1
+}
 AREA_ID = '11863'
-
-CORP_NAME = '파킹스퀘어'
 
 class UrbanBot(BotInterface):
 
     def __init__(self, reservation):
-        self.driver = webdriver.Chrome('/Users/gilsanghyeog/Documents/chromedriver')
-        self.driver.implicitly_wait(100)
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
+        self.discount_id = 920
+        self.s = requests.Session()
 
     def login(self):
-        self.driver.get(PARK_HOST_URL)
-        self.driver.find_element_by_name('login_id').send_keys('kakaot')
-        self.driver.find_element_by_name('login_pw').send_keys('123456')
-        self.driver.find_element_by_xpath("//*[text()='로그인']").click()
         try:
-            self.driver.find_element_by_xpath("//*[text()='주차할인']")
+            login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
             return True
-        except:
+        except requests.exceptions.ConnectionError:
+            print 'connection error'
             return False
-
-    def find_car_number(self):
-        flag = False
-        self.driver.find_element_by_name('carNumber').send_keys(self.k_car_num[-4:])
-        self.driver.find_element_by_xpath("//*[text()='검색']").click()
-        time.sleep(0.05)
-        html = self.driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        car_list = soup.select('table tbody tr')
-        if len(car_list[0].select('td')) == 4:
-            for car in car_list:
-                if self.k_car_num == car.select('td')[1].text:
-                    self.driver.find_element_by_xpath("//*[text()='" + self.k_car_num + "']").click()
+            
+    def find_car_number(self):        
+        flag = False        
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': self.k_car_num[-4:], 'indate1': entry_date, 'indate2': entry_date, 'is_ajax': 1})
+        soup = BeautifulSoup(find_req.content, 'html.parser')
+        tr_list = soup.select('tr')
+        if len(tr_list) >= 1:
+            for tr in tr_list:
+                if tr.select('td')[1].text == k_car_num:
+                    self.serialno = tr.select('td a')[0]['href'].split('&')[3].split('=')[1]
                     flag = True
-                else:
-                    self.driver.quit()
-        else:
-            self.driver.quit()
         return flag
 
     def process(self):
@@ -61,7 +57,16 @@ class UrbanBot(BotInterface):
         return flag
 
     def add_action(self):
-        self.driver.find_element_by_name('chk_info').click()
+        ADD_ACTION_PARAMS = {
+            'InCarNo1': self.k_car_num,
+            'chkedVal': self.discount_id,
+            'SerialNo': self.serialno,
+            'ParkNo': 1,
+            'UnitNo': 1,
+            'DCReason': '',
+            'is_ajax': 1
+        }
+        add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
         return True
 
     def list_find(self):
