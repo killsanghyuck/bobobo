@@ -40,7 +40,7 @@ class UrbanBot(BotInterface):
             
     def find_car_number(self):        
         flag = False        
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': self.k_car_num[-4:], 'indate1': entry_date, 'indate2': entry_date, 'is_ajax': 1})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': self.k_car_num[-4:], 'indate1': self.entry_date, 'indate2': self.entry_date, 'is_ajax': 1})
         soup = BeautifulSoup(find_req.content, 'html.parser')
         tr_list = soup.select('tr')
         if len(tr_list) >= 1:
