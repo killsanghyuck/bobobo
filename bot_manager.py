@@ -44,6 +44,7 @@ from podo_mall_bot import PodoMallBot
 from sfc_bot import SFCBot
 from t_tower_bot import TtowerBot
 from noble_bot import NobleBot
+from the_k_bot import TheKBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
