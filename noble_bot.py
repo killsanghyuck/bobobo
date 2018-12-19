@@ -28,7 +28,7 @@ class NobleBot(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
-        self.discount_id = 401
+        self.discount_id = 679
         self.s = requests.Session()
 
     def login(self):
