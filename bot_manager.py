@@ -102,10 +102,10 @@ def reservation_bot():
                         if bot.find_car_number():
                             if bot.process():
                                 try:
-                                    driver.find_element_by_class_name('select2-choice').click()
+                                    driver.find_element_by_id('select2-pick_state-container').click()
                                 except:
                                     return
-                                driver.find_element_by_id('select2-result-label-4').click()
+                                driver.find_element_by_xpath("//li[@aria-selected='false']").click()
                                 driver.find_element_by_name('commit').click()
                                 print(pick.text + ' : ' + '차량등록 완료 : ' + reservation['k_car_num'])
                             else:
