@@ -21,7 +21,7 @@ LOGIN_INFO = {
     'userId': 'kakaot',
     'userPwd': '123456'
 }
-AREA_ID = '11908'
+AREA_ID = '11992'
 
 class TheKBot(BotInterface):
     def __init__(self, reservation):
