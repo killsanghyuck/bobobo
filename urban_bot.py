@@ -37,15 +37,15 @@ class UrbanBot(BotInterface):
         except requests.exceptions.ConnectionError:
             print 'connection error'
             return False
-            
-    def find_car_number(self):        
-        flag = False        
+
+    def find_car_number(self):
+        flag = False
         find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNumber': self.k_car_num[-4:], 'indate1': self.entry_date, 'indate2': self.entry_date, 'is_ajax': 1})
         soup = BeautifulSoup(find_req.content, 'html.parser')
         tr_list = soup.select('tr')
         if len(tr_list) >= 1:
             for tr in tr_list:
-                if tr.select('td')[1].text == k_car_num:
+                if tr.select('td')[1].text == self.k_car_num:
                     self.serialno = tr.select('td a')[0]['href'].split('&')[3].split('=')[1]
                     flag = True
         return flag
@@ -53,7 +53,6 @@ class UrbanBot(BotInterface):
     def process(self):
         flag = False
         if self.add_action() and self.list_find(): flag = True
-        self.driver.quit()
         return flag
 
     def add_action(self):
