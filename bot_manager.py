@@ -32,6 +32,7 @@ from jail_op_bot import JailOpBot
 from jump_bot import JumpBot
 from yzpark_bot import YzparkBot
 from mallofk_bot import MallOfKBot
+from fast_five_bot import FastFive
 
 #aj
 from balsan_park_bot import BalsanParkBot
