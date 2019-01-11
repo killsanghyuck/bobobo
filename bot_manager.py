@@ -118,5 +118,9 @@ def reservation_bot():
 
 admin_login()
 while True:
+    driver.get(HOST_URL)
+    html = driver.page_source
+    if u'로드스터 관리자' in html:
+        admin_login()
     reservation_bot()
     time.sleep(300)
