@@ -79,7 +79,6 @@ def reservation_bot():
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
         if u'로드스터 관리자' in html:
-            admin_login()
             return
         soup = BeautifulSoup(html, 'html.parser')
         pick_list += soup.select('table#index_table_picks > tbody > tr > td.col-id')
@@ -88,7 +87,6 @@ def reservation_bot():
             driver.get(HOST_URL + '/picks/' + pick.text)
             html = driver.page_source
             if u'로드스터 관리자' in html:
-                admin_login()
                 return
             soup = BeautifulSoup(html, 'html.parser')
             car_number = soup.select('table > tbody > tr.row-license_number > td')
@@ -112,7 +110,6 @@ def reservation_bot():
                                     driver.get(HOST_URL + '/picks/' + pick.text)
                                     html = driver.page_source
                                     if u'로드스터 관리자' in html:
-                                        admin_login()
                                         return
                                     driver.find_element_by_id('select2-pick_state-container').click()
                                 except:
