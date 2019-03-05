@@ -52,7 +52,7 @@ class TheKBot(BotInterface):
             self.i_lot_area = data[0]['iLotArea']
             self.returned_car_no = data[0]['carNo']
 
-        if self.returned_car_no == self.k_car_num: flag = True
+        if  self.k_car_num in self.returned_car_no: flag = True
         return flag
 
     def process(self):

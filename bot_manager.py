@@ -26,13 +26,14 @@ from seosomoon_bot import SeoSoMoonBot
 from ddmc_bot import DdmcBot
 from sahakbusan_bot import SahakBusanBot
 from jongro_sc_bot import JongroScBot
-from dongil_tower_bot import DongilTowerBot
+# from dongil_tower_bot import DongilTowerBot
 from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
 from jump_bot import JumpBot
 from yzpark_bot import YzparkBot
 from mallofk_bot import MallOfKBot
 from fast_five_bot import FastFive
+from alpha_dom_bot import AlphaDomBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
@@ -40,7 +41,7 @@ from gmg_bot import GmgBot
 
 #아마노
 from ace_tower_bot import AceTowerBot
-from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
+# from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
 from podo_mall_bot import PodoMallBot
 from sfc_bot import SFCBot
 from t_tower_bot import TtowerBot

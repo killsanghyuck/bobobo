@@ -19,7 +19,7 @@ LOGIN_INFO = {
     'user_id': 'kakaot',
     'password': '1234'
 }
-AREA_ID = '11914'
+AREA_ID = '12066'
 
 class AlphaDomBot(BotInterface):
 
@@ -27,12 +27,7 @@ class AlphaDomBot(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        if self.duration == 600:
-            self.discount_id = '07'
-        elif self.duration == 900:
-            self.discount_id = '08'
-        elif self.duration == 1440:
-            self.discount_id = '09'
+        self.discount_id = '08'
         self.s = requests.Session()
 
     def login(self):

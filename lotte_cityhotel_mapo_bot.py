@@ -32,8 +32,8 @@ class LotteCityHotelMapoBot(BotInterface):
         self.duration = reservation['duration']
         if self.duration == 1440:
             self.discount_id = 401
-        elif self.duration == 360:
-            self.discount_id = 400
+        elif self.duration == 240:
+            self.discount_id = 391
         self.s = requests.Session()
 
     def login(self):

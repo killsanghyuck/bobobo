@@ -19,14 +19,18 @@ LOGIN_INFO = {
     'user_id': 'kakaot',
     'password': '123456'
 }
-AREA_ID = '12002'
+AREA_ID = '12097'
 
 class YzparkBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = '06'
+        self.duration = reservation['duration']
+        if self.duration == 180:
+            self.discount_id = '03'
+        elif self.duration == 1440:
+            self.discount_id = '06'
         self.s = requests.Session()
 
     def login(self):
@@ -52,7 +56,7 @@ class YzparkBot(BotInterface):
                     if enter_car == 'null':
                         flag = False
                     else:
-                        car_num = tr_list[i].select('td')[1].text.strip()
+                        car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']

@@ -11,7 +11,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://121.162.87.131:8090'
+PARK_HOST_URL = 'http://211.218.29.49:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
