@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://211.218.27.110:8090'
+PARK_HOST_URL = 'http://121.138.149.9:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -20,14 +20,14 @@ LOGIN_INFO = {
     'user_id': 'kakaot',
     'password': '123456'
 }
-AREA_ID = '2878'
+AREA_ID = '12018'
 
-class RiverTowerBot(BotInterface):
+class ktngBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 15
+        self.discount_id = 95
         self.s = requests.Session()
 
     def login(self):
@@ -53,7 +53,7 @@ class RiverTowerBot(BotInterface):
                     if enter_car == 'null':
                         flag = False
                     else:
-                        car_num = tr_list[i].select('td')[1].text.strip()
+                        car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']

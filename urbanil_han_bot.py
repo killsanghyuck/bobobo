@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://125.131.138.11'
+PARK_HOST_URL = 'http://hipubh.iptime.org:8090'
 LOGIN_URL = '/index.php/login/doLogin'
 SEARCH_CAR_NUMBER_URL = '/index.php/main/ajax_CarList'
 ADD_ACTION_URL = '/index.php/main/ajax_DisIns'
@@ -21,14 +21,14 @@ LOGIN_INFO = {
     'login_pw': '123456',
     'is_ajax': 1
 }
-AREA_ID = '11863'
+AREA_ID = '11959'
 
-class UrbanBot(BotInterface):
+class urbanilBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 920
+        self.discount_id = 805
         self.s = requests.Session()
 
     def login(self):

@@ -6,8 +6,9 @@ import sys
 import time
 from bot_interface import BotInterface
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from importlib import reload
+
+
 
 #봇 기본 정보
 PARK_HOST_URL = 'http://ajparkplaza.ajpark.kr'
@@ -38,7 +39,7 @@ class BalsanParkBot(BotInterface):
             login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
             return True
         except requests.exceptions.ConnectionError:
-            print 'connection error'
+            print('connection error')
             return False
 
     def find_car_number(self):
@@ -62,14 +63,14 @@ class BalsanParkBot(BotInterface):
 
     def process(self):
         flag = False
-        if self.add_action(): 
+        if self.add_action():
             flag = True
         return flag
 
     def add_action(self):
         flag = False
         #add_req = s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + pKey + '&' + discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
-        add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')        
+        add_req = self.s.get(PARK_HOST_URL + '/discount/discountApplyProc.cs?' + self.pKey + '&' + self.discount_id + '&dKind=%EB%A7%A4%EC%88%98%EC%B0%A8%EA%B0%90&fDays=&remark=')
         flag = True
         return flag
 

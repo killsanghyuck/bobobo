@@ -7,8 +7,9 @@ from bs4 import BeautifulSoup
 import sys
 import time
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from importlib import reload
+
+
 
 options = Options()
 options.add_argument('--headless')

@@ -6,8 +6,9 @@ import sys
 import time
 from bot_interface import BotInterface
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from importlib import reload
+
+
 
 #봇 기본 정보
 PARK_HOST_URL = 'http://ajgmg.ajpark.kr'
@@ -38,7 +39,7 @@ class GmgBot(BotInterface):
             login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
             return True
         except requests.exceptions.ConnectionError:
-            print 'connection error'
+            print('connection error')
             return False
 
     def find_car_number(self):

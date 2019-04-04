@@ -9,8 +9,9 @@ import json
 
 from bot_interface import BotInterface
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from importlib import reload
+
+
 
 PARK_HOST_URL = 'http://203.251.166.8'
 LOGIN_URL = '/login'
@@ -39,7 +40,7 @@ class TheKBot(BotInterface):
             login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
             return True
         except requests.exceptions.ConnectionError:
-            print 'connection error'
+            print('connection error')
             return False
 
     def find_car_number(self):

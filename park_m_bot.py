@@ -13,7 +13,7 @@ from importlib import reload
 
 
 
-PARK_HOST_URL = 'http://112.218.246.19'
+PARK_HOST_URL = 'http://218.144.159.119'
 LOGIN_URL = '/login'
 SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
@@ -22,14 +22,14 @@ LOGIN_INFO = {
     'userId': 'kakaot',
     'userPwd': '123456'
 }
-AREA_ID = '11908'
+AREA_ID = '12076'
 
-class SFCBot(BotInterface):
+class parkmBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        self.discount_id = 26
+        self.discount_id = 8
         self.s = requests.Session()
 
     def login(self):
@@ -50,7 +50,7 @@ class SFCBot(BotInterface):
             self.i_lot_area = data[0]['iLotArea']
             self.returned_car_no = data[0]['carNo']
 
-        if self.returned_car_no == self.k_car_num: flag = True
+        if  self.k_car_num in self.returned_car_no: flag = True
         return flag
 
     def process(self):
@@ -60,6 +60,7 @@ class SFCBot(BotInterface):
                 'peId': self.id,
                 'discountType': self.discount_id,
                 'carno': self.k_car_num,
+                'acPlate2': '',
                 'memo': ''
             }
             add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)

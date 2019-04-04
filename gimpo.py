@@ -25,7 +25,7 @@ def gimpo_api():
             response = requests.post(seoul_url, data=data )
             print response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
         except requests.exceptions.ConnectionError:
-            print 'connection error'
+            print('connection error')
 while True:
     gimpo_api()
     time.sleep(200)

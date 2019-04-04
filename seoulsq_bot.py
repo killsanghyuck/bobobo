@@ -7,8 +7,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from bot_interface import BotInterface
 
-reload(sys)
-sys.setdefaultencoding('utf-8')
+from importlib import reload
+
+
 
 #봇 기본 정보
 PARK_HOST_URL = 'http://seoulsquare.iptime.org:8080/'

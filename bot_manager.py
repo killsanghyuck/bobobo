@@ -34,6 +34,25 @@ from yzpark_bot import YzparkBot
 from mallofk_bot import MallOfKBot
 from fast_five_bot import FastFive
 from alpha_dom_bot import AlphaDomBot
+from hp_building_bot import hpbuildingBot
+from arc_place_bot import arcplaceBot
+from hanbit_plz_bot import hanbitBot
+from samwon_tower_bot import samwonBot
+from ktng_daechi_bot import ktngBot
+from twincity_namsan_bot import twincitynamsanBot
+from tower8_bot import tower8Bot
+from namsan_square_bot import namsansquareBot
+from ktb_building_bot import ktbbuildingBot
+from brown_stone_bot import brownBot
+from platinum_tower_bot import platinumBot
+from central_place_bot import centralplaceBot
+from icon_yeoksam_bot import iconBot
+from shilla_yeoksam_bot import shillaBot
+from rak_sadang_bot import raksadangBot
+from ki_tower_bot import kitowerBot
+from wooduk_bot import woodukBot
+from center_place_bot import centerplaceBot
+from tsone_bot import TsoneBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
@@ -47,14 +66,17 @@ from sfc_bot import SFCBot
 from t_tower_bot import TtowerBot
 from noble_bot import NobleBot
 from the_k_bot import TheKBot
+from park_m_bot import parkmBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
 from urban_bot import UrbanBot
+from urbanil_han_bot import urbanilBot
 
 options = Options()
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
+options.add_argument("lang=ko_KR")
 
 driver = webdriver.Chrome('/Users/blain1/Documents/chromedriver', options=options)
 driver.implicitly_wait(3)
@@ -89,10 +111,13 @@ def reservation_bot():
             html = driver.page_source
             if u'로드스터 관리자' in html:
                 return
+            if u'예약완료(비연동)' not in html:
+                print('fucking page !!!!')
+                continue
             soup = BeautifulSoup(html, 'html.parser')
             car_number = soup.select('table > tbody > tr.row-license_number > td')
             area_id = soup.select('table > tbody > tr.row-parking_lot > td > a')[0]['href'].split('/')[3]
-            k_car_num = car_number[0].encode_contents().strip().replace(' ', '').split("<br/>")[0]
+            k_car_num = car_number[0].encode_contents().decode().strip().replace(' ', '').split("<br/>")[0]
             ti = soup.select('table > tbody > tr.row-created_at > td')[1].text
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
