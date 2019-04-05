@@ -27,7 +27,10 @@ class hanbitBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 99
+        if self.duration == 1440:
+            self.discount_id = 99
+        elif self.duration == 240:
+            self.discount_id = 96
         self.s = requests.Session()
 
     def login(self):
