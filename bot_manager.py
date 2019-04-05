@@ -67,6 +67,7 @@ from t_tower_bot import TtowerBot
 from noble_bot import NobleBot
 from the_k_bot import TheKBot
 from park_m_bot import parkmBot
+from hana_financial_bot import HanaFinancialBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
