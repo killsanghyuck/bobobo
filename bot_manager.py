@@ -53,6 +53,10 @@ from ki_tower_bot import kitowerBot
 from wooduk_bot import woodukBot
 from center_place_bot import centerplaceBot
 from tsone_bot import TsoneBot
+from hd_intellics_bot import hdintellicsBot
+from taepyeongro_bot import taepyeongBot
+from cosmo_tower_bot import cosmoBot
+from susong_square_bot import susongBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
@@ -99,7 +103,7 @@ def admin_login():
 
 def reservation_bot():
     pick_list = []
-    for i in range(1, 6):
+    for i in range(1, 15):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
         if u'로드스터 관리자' in html:

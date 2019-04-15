@@ -11,27 +11,23 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://112.220.71.194:8090'
+PARK_HOST_URL = 'http://125.131.190.177:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
 LIST_FIND = '/discount/discount_list.asp'
 LOGIN_INFO = {
     'user_id': 'kakaot',
-    'password': '123456'
+    'password': '1234'
 }
-AREA_ID = '12051'
+AREA_ID = '12023'
 
-class hpbuildingBot(BotInterface):
+class hdintellicsBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.duration = reservation['duration']
-        if self.duration == 1440:
-            self.discount_id = 96
-        elif self.duration == 360:
-            self.discount_id = 93
+        self.discount_id = 96
         self.s = requests.Session()
 
     def login(self):

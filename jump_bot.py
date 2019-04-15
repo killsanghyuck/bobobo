@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://218.232.123.143:8090'
+PARK_HOST_URL = 'http://218.232.123.157:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -57,7 +57,7 @@ class JumpBot(BotInterface):
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
-                            flag = True 
+                            flag = True
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True

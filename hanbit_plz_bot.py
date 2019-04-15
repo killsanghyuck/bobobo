@@ -30,7 +30,7 @@ class hanbitBot(BotInterface):
         self.duration = reservation['duration']
         if self.duration == 1440:
             self.discount_id = 99
-        elif self.duration == 240:
+        elif self.duration == 360:
             self.discount_id = 96
         self.s = requests.Session()
 
