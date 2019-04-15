@@ -10,6 +10,8 @@ import datetime
 
 #bot_list
 
+
+# 테스트 수정
 # 다래
 from alpha_bot1 import AlphaBot1
 from alpha_bot2 import AlphaBot2
