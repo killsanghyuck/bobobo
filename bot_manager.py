@@ -130,6 +130,10 @@ def reservation_bot():
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
             if duration == '종일권':
                 duration = 1440
+            elif duration == '야간권':
+                continue
+            elif duration == '심야권':
+                continue
             else:
                 duration = int(duration[:-3]) * 60
             for cls in globals()['BotInterface'].__subclasses__():

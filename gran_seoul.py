@@ -74,10 +74,9 @@ class GranSeoulBot(BotInterface):
         return flag
 
     def process(self):
-        flag = False
+        flag = True
         self.make_order()
         self.submit_coupon()
-        flag = self.submit_coupon_success()
         return flag
 
     def make_order(self):
