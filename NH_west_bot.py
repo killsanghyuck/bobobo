@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://114.205.71.136:8090'
+PARK_HOST_URL = 'http://222.110.3.98:8090/'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -20,14 +20,14 @@ LOGIN_INFO = {
     'user_id': 'kakaot',
     'password': '123456'
 }
-AREA_ID = '12013'
+AREA_ID = '12074'
 
-class centerplaceBot(BotInterface):
+class NHwestBot(BotInterface):
 
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 97
+        self.discount_id = 95
         self.s = requests.Session()
 
     def login(self):

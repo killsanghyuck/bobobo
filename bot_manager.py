@@ -59,6 +59,8 @@ from hd_intellics_bot import hdintellicsBot
 from taepyeongro_bot import taepyeongBot
 from cosmo_tower_bot import cosmoBot
 from susong_square_bot import susongBot
+from NH_east_bot import NHeastBot
+from NH_west_bot import NHwestBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
