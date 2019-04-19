@@ -81,7 +81,7 @@ from urban_bot import UrbanBot
 from urbanil_han_bot import urbanilBot
 
 options = Options()
-options.add_argument('--headless')
+#options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument("lang=ko_KR")
 
