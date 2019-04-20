@@ -61,6 +61,7 @@ from cosmo_tower_bot import cosmoBot
 from susong_square_bot import susongBot
 from NH_east_bot import NHeastBot
 from NH_west_bot import NHwestBot
+from Rak_seongdong_bot import RakseongdongBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
@@ -107,7 +108,7 @@ def admin_login():
 
 def reservation_bot():
     pick_list = []
-    for i in range(1, 15):
+    for i in range(1, 20):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
         if u'로드스터 관리자' in html:
