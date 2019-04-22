@@ -137,6 +137,8 @@ def reservation_bot():
                 continue
             elif duration == '심야권':
                 continue
+            elif duration == '야간12':
+                continue
             else:
                 duration = int(duration[:-3]) * 60
             for cls in globals()['BotInterface'].__subclasses__():
