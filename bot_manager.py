@@ -137,7 +137,7 @@ def reservation_bot():
                 continue
             elif duration == '심야권':
                 continue
-            elif duration == '야간12':
+            elif duration == '야간12시간권':
                 continue
             else:
                 duration = int(duration[:-3]) * 60
