@@ -82,7 +82,7 @@ from hana_financial_bot import HanaFinancialBot
 from gran_seoul import GranSeoulBot
 from urban_bot import UrbanBot
 from urbanil_han_bot import urbanilBot
-from Kdb_tower_bot import KdbtowerBot
+# from Kdb_tower_bot import KdbtowerBot
 
 options = Options()
 #options.add_argument('--headless')
