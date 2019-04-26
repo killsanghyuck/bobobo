@@ -62,6 +62,8 @@ from susong_square_bot import susongBot
 from NH_east_bot import NHeastBot
 from NH_west_bot import NHwestBot
 from Rak_seongdong_bot import RakseongdongBot
+from Wework_bot import WeworkBot
+from Ing_tower_bot import IngBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
