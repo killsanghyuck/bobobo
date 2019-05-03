@@ -64,6 +64,7 @@ from NH_west_bot import NHwestBot
 from Rak_seongdong_bot import RakseongdongBot
 from Wework_bot import WeworkBot
 from Ing_tower_bot import IngBot
+from Ktng_seodaemun_bot import KtseodaemunBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
@@ -79,7 +80,7 @@ from noble_bot import NobleBot
 from the_k_bot import TheKBot
 from park_m_bot import parkmBot
 # from hana_financial_bot import HanaFinancialBot
-from A_pro_bot import AproBot
+# from A_pro_bot import AproBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
