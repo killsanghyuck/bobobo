@@ -144,7 +144,10 @@ def reservation_bot():
             if duration == '종일권':
                 duration = 1440
             elif u'야간' in duration:
-                duration = int(duration[:-3][2:]) * 60
+                if len(duration) == 3:
+                    continue
+                else:
+                    duration = int(duration[:-3][2:]) * 60
             elif u'시간권' in duration:
                 duration = int(duration[:-3]) * 60
             else:
