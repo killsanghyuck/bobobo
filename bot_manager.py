@@ -137,16 +137,18 @@ def reservation_bot():
             ti = soup.select('table > tbody > tr.row-created_at > td')[1].text
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
+
+            if u'기계식' in duration:
+                continue
+
             if duration == '종일권':
                 duration = 1440
-            elif duration == '야간권':
-                continue
-            elif duration == '심야권':
-                continue
-            elif duration == '야간12시간권':
-                continue
-            else:
+            elif u'야간' in duration:
+                duration = int(duration[:-3][2:]) * 60
+            elif u'시간권' in duration:
                 duration = int(duration[:-3]) * 60
+            else:
+                continue;
             for cls in globals()['BotInterface'].__subclasses__():
                 if cls.area_id() == area_id:
                     reservation = { 'k_car_num' : k_car_num, 'entry_date' : TODAY, 'ti' : ti, 'duration' : duration}
