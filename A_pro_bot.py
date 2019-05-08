@@ -20,14 +20,14 @@ ADD_ACTION_URL = '/discount/registration/save'
 LIST_FIND = '/discount/state/list/doListMst'
 LOGIN_INFO = {
     'userId': '0067',
-    'userPwd': '1234'
+    'userPwd': '1111'
 }
 AREA_ID = '12099'
 
 class AproBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
         if self.duration == 420:
             self.discount_id = 8
@@ -45,7 +45,7 @@ class AproBot(BotInterface):
 
     def find_car_number(self):
         flag = False
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num[-4:], 'entryDate': self.entry_date})
         data = json.loads(find_req.content)
         self.returned_car_no = ''
         if len(data) >= 1:
