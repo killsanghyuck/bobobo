@@ -7,11 +7,10 @@ import time
 from bot_interface import BotInterface
 
 from importlib import reload
-ß
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://211.210.95.35:8090/'
+PARK_HOST_URL = 'http://211.210.95.35:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
