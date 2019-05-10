@@ -89,6 +89,10 @@ from urban_bot import UrbanBot
 from urbanil_han_bot import urbanilBot
 # from Kdb_tower_bot import KdbtowerBot
 
+#마이발렛
+from ak_gi_bot import AKGiBot
+from yeouido_marr_bot import YeouidoMarrBot
+
 options = Options()
 #options.add_argument('--headless')
 options.add_argument('--disable-gpu')
