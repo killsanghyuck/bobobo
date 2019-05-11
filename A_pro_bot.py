@@ -33,6 +33,8 @@ class AproBot(BotInterface):
             self.discount_id = 8
         elif self.duration == 720:
             self.discount_id = 9
+        elif self.duration == 660:
+                self.discount_id = 11
         self.s = requests.Session()
 
     def login(self):
