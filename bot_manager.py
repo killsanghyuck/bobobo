@@ -94,7 +94,7 @@ from ak_gi_bot import AKGiBot
 from yeouido_marr_bot import YeouidoMarrBot
 
 options = Options()
-#options.add_argument('--headless')
+# options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument("lang=ko_KR")
 
