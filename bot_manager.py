@@ -82,6 +82,7 @@ from the_k_bot import TheKBot
 from park_m_bot import parkmBot
 # from hana_financial_bot import HanaFinancialBot
 from A_pro_bot import AproBot
+from blue_square_bot import BlueBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
