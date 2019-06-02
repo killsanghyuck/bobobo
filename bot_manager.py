@@ -66,6 +66,7 @@ from Wework_bot import WeworkBot
 from Ing_tower_bot import IngBot
 from Ktng_seodaemun_bot import KtseodaemunBot
 from Wise_tower_bot import WisetowerBot
+from W_tower_bot import WtowerBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
