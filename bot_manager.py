@@ -146,6 +146,12 @@ def reservation_bot():
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
 
+            arrival_time = soup.select('table > tbody > tr.row-estimated_arrival_time > td')[0].text
+            arrival_time = datetime.datetime.strptime(str(arrival_time), "%Y/%m/%d %H:%M:%S").strftime("%Y-%m-%d")
+
+            if arrival_time != TODAY:
+                continue
+
             if u'기계식' in duration:
                 continue
 
