@@ -121,6 +121,7 @@ def admin_login():
     driver.find_element_by_name('commit').click()
 
 def reservation_bot():
+    TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
     pick_list = []
     for i in range(1, 20):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
