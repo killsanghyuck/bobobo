@@ -85,6 +85,8 @@ from park_m_bot import parkmBot
 # from A_pro_bot import AproBot
 from blue_square_bot import BlueBot
 from Hankyung_bot import HankyungBot
+from kyung_ho1_bot import KyungHo1
+from kyung_ho2_bot import KyungHo2
 
 #넥스파
 from gran_seoul import GranSeoulBot
@@ -160,7 +162,7 @@ def reservation_bot():
                 duration = 1440
             elif u'야간' in duration:
                 if len(duration) == 3:
-                    continue
+                    duration = 860212
                 else:
                     duration = int(duration[:-3][2:]) * 60
             elif u'시간권' in duration:
