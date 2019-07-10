@@ -13,15 +13,11 @@ from importlib import reload
 
 
 
-PARK_HOST_URL = 'http://14.56.78.233/'
+PARK_HOST_URL = 'http://14.56.78.233'
 LOGIN_URL = '/login'
 SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
 LIST_FIND = '/discount/state/list/doListMst'
-LOGIN_INFO = {
-    'userId': '카카오',
-    'userPwd': '1111'
-}
 AREA_ID = '12217'
 
 class KyungHo2(BotInterface):
@@ -37,7 +33,7 @@ class KyungHo2(BotInterface):
 
     def login(self):
         try:
-            login_req = self.s.post(PARK_HOST_URL + LOGIN_URL, data=LOGIN_INFO)
+            login_req = self.s.post(PARK_HOST_URL + LOGIN_URL + "?" + u"referer=&userId=%EC%B9%B4%EC%B9%B4%EC%98%A4&userPwd=1111")
             return True
         except requests.exceptions.ConnectionError:
             print('connection error')
