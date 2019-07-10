@@ -29,7 +29,7 @@ class HyundaisinchonBot(BotInterface):
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
         if self.duration == 1440:
-            self.discount_id = 05
+            self.discount_id = "05"
         elif self.duration == 240:
             self.discount_id = 13
         self.s = requests.Session()
