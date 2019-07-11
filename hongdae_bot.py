@@ -53,6 +53,7 @@ class HongDaeBot(BotInterface):
         find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num[-4:], 'entryDate': self.entry_date})
         data = json.loads(find_req.content)
         self.returned_car_no = ''
+        self.entry_time = '19'
         if len(data) >= 1:
             self.id = data[0]['id']
             self.i_lot_area = data[0]['iLotArea']
