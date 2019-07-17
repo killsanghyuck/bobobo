@@ -89,6 +89,7 @@ from Hankyung_bot import HankyungBot
 from kyung_ho1_bot import KyungHo1
 from kyung_ho2_bot import KyungHo2
 from hongdae_bot import HongDaeBot
+from ecc_bot import eccbot
 
 #넥스파
 from gran_seoul import GranSeoulBot
