@@ -90,6 +90,7 @@ from kyung_ho1_bot import KyungHo1
 from kyung_ho2_bot import KyungHo2
 from hongdae_bot import HongDaeBot
 from ecc_bot import eccbot
+from one_pung_bot import OnePungBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
@@ -170,6 +171,8 @@ def reservation_bot():
                     duration = int(duration[:-3][2:]) * 60
             elif u'시간권' in duration:
                 duration = int(duration[:-3]) * 60
+            elif u'오후권' in duration:
+                duration = 20306001
             else:
                 continue;
             for cls in globals()['BotInterface'].__subclasses__():
