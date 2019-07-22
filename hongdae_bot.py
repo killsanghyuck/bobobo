@@ -62,14 +62,14 @@ class HongDaeBot(BotInterface):
 
         if self.k_car_num in self.returned_car_no: flag = True
         
-        if self.check_time() and self.duration == 860212: flag = False
+        if self.check_time(): flag = False
 
         return flag
 
     def check_time(self):
       flag = False
       entry_time = int(self.entry_time)
-      if (entry_time < 18 and entry_time >= 7):
+      if (entry_time < 18 and entry_time >= 7) and self.duration == 860212:
         print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
         flag = True
       
