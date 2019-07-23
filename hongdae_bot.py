@@ -55,14 +55,14 @@ class HongDaeBot(BotInterface):
         self.returned_car_no = ''
         self.entry_time = '19'
         if len(data) >= 1:
-            self.id = data[0]['id']
-            self.i_lot_area = data[0]['iLotArea']
-            self.returned_car_no = data[0]['carNo']
-            self.entry_time = datetime.datetime.strptime(data[0]['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
-
-        if self.k_car_num in self.returned_car_no: flag = True
-        
-        if self.check_time(): flag = False
+            for car in data:
+                if self.k_car_num in car['carNo']:
+                    self.id = car['id']
+                    self.i_lot_area = car['iLotArea']
+                    self.returned_car_no = car['carNo']
+                    self.entry_time = datetime.datetime.strptime(car['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
+                    flag = True        
+                    if self.check_time(): flag = False
 
         return flag
 
