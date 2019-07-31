@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://121.161.207.210:8090'
+PARK_HOST_URL = 'http://61.74.31.144:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
