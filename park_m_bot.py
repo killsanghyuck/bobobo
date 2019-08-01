@@ -22,7 +22,7 @@ LOGIN_INFO = {
     'userId': 'kakaot',
     'userPwd': '123456'
 }
-AREA_ID = '12076'
+AREA_ID = '12228'
 
 class parkmBot(BotInterface):
     def __init__(self, reservation):
