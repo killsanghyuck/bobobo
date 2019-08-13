@@ -142,7 +142,7 @@ def reservation_bot():
             html = driver.page_source
             if u'로드스터 관리자' in html:
                 return
-            if u'예약완료(비연동)' not in html:
+            if u'예약 완료(비연동)' not in html:
                 print('fucking page !!!!')
                 continue
             soup = BeautifulSoup(html, 'html.parser')
