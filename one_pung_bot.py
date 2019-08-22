@@ -28,7 +28,7 @@ AREA_ID = '12230'
 class OnePungBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
         if self.duration == 120:
             self.discount_id = 17
@@ -59,7 +59,7 @@ class OnePungBot(BotInterface):
             self.entry_time = datetime.datetime.strptime(data[0]['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
 
         if self.k_car_num in self.returned_car_no: flag = True
-        
+
         if self.check_time(): flag = False
 
         return flag
@@ -72,13 +72,13 @@ class OnePungBot(BotInterface):
           print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
           flag = True
       elif self.duration == 20306001:
-        if entry_time < 18 and entry_time >= 0: 
+        if entry_time < 18 and entry_time >= 0:
           print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
           flag = True
-      
+
       return flag
 
-    def process(self):        
+    def process(self):
         flag = False
         def add_action(self):
             ADD_ACTION_PARAMS = {
