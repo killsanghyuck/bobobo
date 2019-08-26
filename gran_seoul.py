@@ -66,7 +66,7 @@ class GranSeoulBot(BotInterface):
                 if self.k_car_num != tr.select('a')[0].text: continue
                 self.real_ti = tr.select('input')[0].get('value')
                 self.real_ti = datetime.datetime.strptime(str(self.real_ti), "%Y%m%d%H%M%S")
-                if self.real_ti.strftime("%Y-%m-%d") != self.ti.strftime("%Y-%m-%d"): continue
+                if self.real_ti.strftime("%Y-%m-%d") != self.entry_date: continue
                 self.set_duration()
                 self.get_park_code()
                 flag = True
