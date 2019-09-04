@@ -68,6 +68,8 @@ from Ktng_seodaemun_bot import KtseodaemunBot
 from Wise_tower_bot import WisetowerBot
 from W_tower_bot import WtowerBot
 from Hyundai_sinchon_bot import HyundaisinchonBot
+from eco_terraces_bot import EcoterracesBot
+from central_tower_bot import CentraltowerBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
