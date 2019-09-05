@@ -96,6 +96,7 @@ from one_pung_bot import OnePungBot
 from seoul_archives_bot import SeoularchiveshBot
 from lotte_castle_bot import LotteCastleBot
 from gamjung_bot import GamjungBot
+from js_hotel_bot import JsHotelBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
