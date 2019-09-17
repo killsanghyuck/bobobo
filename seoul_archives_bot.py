@@ -31,7 +31,12 @@ class SeoularchiveshBot(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
-        self.discount_id = 5
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 0:
+            self.discount_id = 5
+        else:
+            self.discount_id = 8
         self.s = requests.Session()
 
     def login(self):
@@ -52,9 +57,21 @@ class SeoularchiveshBot(BotInterface):
             self.id = data[0]['id']
             self.i_lot_area = data[0]['iLotArea']
             self.returned_car_no = data[0]['carNo']
+            self.entry_time = datetime.datetime.strptime(data[0]['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
+            if  self.k_car_num in self.returned_car_no: flag = True
+            if self.check_time(): flag = False
 
-        if  self.k_car_num in self.returned_car_no: flag = True
         return flag
+
+    def check_time(self):
+      flag = False
+      entry_time = int(self.entry_time)
+      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
+        print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
+        flag = True
+
+      return flag
+
 
     def process(self):
         flag = False

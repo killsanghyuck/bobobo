@@ -27,7 +27,13 @@ class namsansquareBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 63
+        self.ticket_state = reservation['ticket_state']
+
+        if ticket_state == 0:
+            self.discount_id = 63
+        else:
+            self.discount_id = 64
+
         self.s = requests.Session()
 
     def login(self):
@@ -61,7 +67,18 @@ class namsansquareBot(BotInterface):
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
+                            
+                        if self.check_time(): flag = False
         return flag
+
+    def check_time(self):
+      flag = False
+      entry_time = int(self.entry_time)
+      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
+        print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
+        flag = True
+
+      return flag
 
     def process(self):
         flag = False

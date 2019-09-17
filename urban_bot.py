@@ -28,7 +28,12 @@ class UrbanBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 920
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 0:        
+            self.discount_id = 920
+        else:
+            self.discount_id = 921
         self.s = requests.Session()
 
     def login(self):
@@ -48,13 +53,25 @@ class UrbanBot(BotInterface):
             for tr in tr_list:
                 if tr.select('td')[1].text == self.k_car_num:
                     self.serialno = tr.select('td a')[0]['href'].split('&')[3].split('=')[1]
+                    entry_time = tr.select('td')[2].text.strip()                    
+                    self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")                                            
                     flag = True
+                    if self.check_time(): flag = False
         return flag
 
     def process(self):
         flag = False
         if self.add_action() and self.list_find(): flag = True
         return flag
+    
+    def check_time(self):
+      flag = False
+      entry_time = int(self.entry_time)
+      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
+        print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
+        flag = True
+
+      return flag
 
     def add_action(self):
         ADD_ACTION_PARAMS = {
