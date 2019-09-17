@@ -6,6 +6,7 @@ import sys
 import time
 import datetime
 import json
+from urllib import parse
 
 from bot_interface import BotInterface
 
@@ -13,7 +14,7 @@ from importlib import reload
 
 
 
-PARK_HOST_URL = 'http://wp.awp.co.kr'
+PARK_HOST_URL = 'http://61.72.240.108'
 LOGIN_URL = '/login'
 SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
@@ -23,24 +24,14 @@ LOGIN_INFO = {
     'userId': 'kakaot',
     'userPwd': '123456'
 }
-AREA_ID = '12230'
+AREA_ID = '13390'
 
-class OnePungBot(BotInterface):
+class PacificBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
-        self.ticket_state = reservation['ticket_state']
-
-        if self.ticket_state == 0:
-            if self.duration == 120:
-                self.discount_id = 17
-        elif self.ticket_state == 1:
-            if self.duration == 1440:
-                self.discount_id = 16
-        elif self.ticket_state == 2:
-            if self.duration == 1440:
-                self.duration_id = 15
+        self.discount_id = 15
         self.s = requests.Session()
 
     def login(self):
@@ -53,35 +44,19 @@ class OnePungBot(BotInterface):
 
     def find_car_number(self):
         flag = False
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num[-4:], 'entryDate': self.entry_date})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL + "?carNo=" + parse.quote(self.k_car_num) + '&entryDate=' + self.entry_date)
         data = json.loads(find_req.content)
         self.returned_car_no = ''
         self.entry_time = '19'
         if len(data) >= 1:
-            self.id = data[0]['id']
-            self.i_lot_area = data[0]['iLotArea']
-            self.returned_car_no = data[0]['carNo']
-            self.entry_time = datetime.datetime.strptime(data[0]['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
-
-        if self.k_car_num in self.returned_car_no: flag = True
-
-        if self.check_time(): flag = False
-
+            for car in data:
+                if self.k_car_num in car['carNo']:
+                    self.id = car['id']
+                    self.i_lot_area = car['iLotArea']
+                    self.returned_car_no = car['carNo']
+                    self.entry_time = datetime.datetime.strptime(car['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
+                    flag = True
         return flag
-
-    def check_time(self):
-      flag = False
-      entry_time = int(self.entry_time)
-      if self.ticket_state == 1:
-        if entry_time < 18 and entry_time >= 7:
-          print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
-          flag = True
-      elif self.ticket_state == 2:
-        if entry_time < 18 and entry_time >= 0:
-          print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
-          flag = True
-
-      return flag
 
     def process(self):
         flag = False

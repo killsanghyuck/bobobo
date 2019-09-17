@@ -30,14 +30,19 @@ class HongDaeBot(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.duration = reservation['duration']
-        if self.duration == 1440:
-            self.discount_id = 17
-        elif self.duration == 240:
-            self.discount_id = 18
-        elif self.duration == 480:
-            self.discount_id = 19
-        elif self.duration == 860212:
-            self.discount_id = 16
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 0:
+            if self.duration == 1440:
+                self.discount_id = 17
+            elif self.duration == 240:
+                self.discount_id = 18
+            elif self.duration == 480:
+                self.discount_id = 19
+        else:
+            if self.duration == 1440:
+                self.discount_id = 16
+
         self.s = requests.Session()
 
     def login(self):
@@ -61,7 +66,7 @@ class HongDaeBot(BotInterface):
                     self.i_lot_area = car['iLotArea']
                     self.returned_car_no = car['carNo']
                     self.entry_time = datetime.datetime.strptime(car['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
-                    flag = True        
+                    flag = True
                     if self.check_time(): flag = False
 
         return flag
@@ -69,13 +74,13 @@ class HongDaeBot(BotInterface):
     def check_time(self):
       flag = False
       entry_time = int(self.entry_time)
-      if (entry_time < 18 and entry_time >= 7) and self.duration == 860212:
+      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
         print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
         flag = True
-      
+
       return flag
 
-    def process(self):        
+    def process(self):
         flag = False
         def add_action(self):
             ADD_ACTION_PARAMS = {

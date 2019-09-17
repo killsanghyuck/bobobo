@@ -25,10 +25,14 @@ class KyungHo1(BotInterface):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
-        if self.duration == 240:
-            self.discount_id = 4
-        elif self.duration == 860212:
-            self.discount_id = 5
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 1:
+            if self.duration == 1440:
+                self.discount_id = 5
+        else:
+            if self.duration == 240:
+                self.discount_id = 4
         self.s = requests.Session()
 
     def login(self):

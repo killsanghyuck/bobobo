@@ -158,7 +158,6 @@ def reservation_bot():
             ti = soup.select('table > tbody > tr.row-created_at > td')[1].text
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
-
             arrival_time = soup.select('table > tbody > tr.row-estimated_arrival_time > td')[0].text
             arrival_time = datetime.datetime.strptime(str(arrival_time), "%Y/%m/%d %H:%M:%S").strftime("%Y-%m-%d")
 
@@ -168,22 +167,30 @@ def reservation_bot():
             if u'기계식' in duration:
                 continue
 
+            # 0: 일반, 1: 야간권, 2: 오후권
+            ticket_state = 0
+
             if duration == '종일권':
                 duration = 1440
             elif u'야간' in duration:
+                ticket_state = 1
                 if len(duration) == 3:
-                    duration = 860212
+                    duration = 1440
                 else:
                     duration = int(duration[:-3][2:]) * 60
             elif u'시간권' in duration:
                 duration = int(duration[:-3]) * 60
             elif u'오후권' in duration:
-                duration = 20306001
+                ticket_state = 2
+                if len(duration) == 3:
+                    duration = 1440
+                else:
+                    duration = int(duration[:-3][2:]) * 60
             else:
                 continue;
             for cls in globals()['BotInterface'].__subclasses__():
                 if cls.area_id() == area_id:
-                    reservation = { 'k_car_num' : k_car_num, 'entry_date' : TODAY, 'ti' : ti, 'duration' : duration}
+                    reservation = { 'k_car_num' : k_car_num, 'entry_date' : TODAY, 'ti' : ti, 'duration' : duration, 'ticket_state': ticket_state}
                     bot = cls(reservation)
                     if bot.login():
                         if bot.find_car_number():
