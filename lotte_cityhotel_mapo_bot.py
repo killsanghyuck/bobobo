@@ -33,6 +33,8 @@ class LotteCityHotelMapoBot(BotInterface):
         self.duration = reservation['duration']
         if self.duration == 1440:
             self.discount_id = 401
+        elif self.duration == 600:
+            self.discount_id = 404
         elif self.duration == 240:
             self.discount_id = 391
         self.s = requests.Session()
@@ -61,7 +63,7 @@ class LotteCityHotelMapoBot(BotInterface):
     def process(self):
         flag = False
         def add_action(self):
-            ADD_ACTION_PARAMS = {
+            add_action_params = {
                 'peId': self.id,
                 'corp': CORP_NAME,
                 'discountType': self.discount_id,
@@ -69,7 +71,10 @@ class LotteCityHotelMapoBot(BotInterface):
                 'iLotArea': self.i_lot_area,
                 'memo': ''
             }
-            add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
+            add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=add_action_params)
+            if self.duration == 600:
+                add_action_params['discountType'] = 391
+                add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
             return True
 
         def list_find(k_car_num):

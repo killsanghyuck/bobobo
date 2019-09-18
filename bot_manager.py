@@ -77,7 +77,7 @@ from gmg_bot import GmgBot
 
 #아마노
 from ace_tower_bot import AceTowerBot
-# from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
+from lotte_cityhotel_mapo_bot import LotteCityHotelMapoBot
 from podo_mall_bot import PodoMallBot
 from sfc_bot import SFCBot
 from t_tower_bot import TtowerBot
