@@ -58,6 +58,7 @@ class UrbanBot(BotInterface):
                     self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")                                            
                     flag = True
                     if self.check_time(): flag = False
+                    break
         return flag
 
     def process(self):

@@ -68,6 +68,7 @@ class HongDaeBot(BotInterface):
                     self.entry_time = datetime.datetime.strptime(car['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
                     flag = True
                     if self.check_time(): flag = False
+                    break
 
         return flag
 

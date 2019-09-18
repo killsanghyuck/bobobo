@@ -72,6 +72,7 @@ class twincitynamsanBot(BotInterface):
                             flag = True
 
                         if self.check_time(): flag = False
+                        break
         return flag
 
     def check_time(self):
