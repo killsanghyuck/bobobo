@@ -30,7 +30,7 @@ class samwonBot(BotInterface):
         self.entry_date = reservation['entry_date']
         self.ticket_state = reservation['ticket_state']
 
-        if ticket_state == 0:
+        if self.ticket_state == 0:
             self.discount_id = 99
         else:
             self.discount_id = 96

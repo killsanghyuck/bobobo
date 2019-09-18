@@ -20,13 +20,13 @@ def gimpo_api():
     for k, v in enumerate(area_list):
         data = {'key':'DQIVRNSV4P',
                 'infra_id':AREA_ID[v.select('parkingairportcodename')[0].text],
-                'current_parking':v.select('parkingistay')[0].text }        
+                'current_parking':v.select('parkingistay')[0].text }
         try:
             response = requests.post(seoul_url, data=data )
-            print v.select('parkingairportcodename')[0] + ':' + response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
+            print response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
         except requests.exceptions.ConnectionError:
             print('connection error')
-            
+
     data = {'key':'DQIVRNSV4P',
             'infra_id': 1113282,
             'current_parking': 502 }
@@ -35,7 +35,7 @@ def gimpo_api():
         print '미아점 :' + response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
     except requests.exceptions.ConnectionError:
         print('connection error')
-    
+
 while True:
     gimpo_api()
     time.sleep(200)

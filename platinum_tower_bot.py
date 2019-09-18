@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import time
+import datetime
 from bot_interface import BotInterface
 
 from importlib import reload
@@ -62,7 +63,7 @@ class platinumBot(BotInterface):
                         car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
                         entry_time = tr_list[i].select('td')[2].text.strip()
-                        self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")                        
+                        self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
