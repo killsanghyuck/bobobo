@@ -31,7 +31,7 @@ class ktbbuildingBot(BotInterface):
         self.duration = reservation['duration']
         self.ticket_state = reservation['ticket_state']
 
-        if ticket_state == 0:
+        if self.ticket_state == 0:
             self.discount_id = 95
         else:
             self.discount_id = 93
