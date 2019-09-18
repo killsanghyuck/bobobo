@@ -23,9 +23,19 @@ def gimpo_api():
                 'current_parking':v.select('parkingistay')[0].text }        
         try:
             response = requests.post(seoul_url, data=data )
-            print response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
+            print v.select('parkingairportcodename')[0] + ':' + response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
         except requests.exceptions.ConnectionError:
             print('connection error')
+            
+    data = {'key':'DQIVRNSV4P',
+            'infra_id': 1113282,
+            'current_parking': 502 }
+    try:
+        response = requests.post(seoul_url, data=data )
+        print '미아점 :' + response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
+    except requests.exceptions.ConnectionError:
+        print('connection error')
+    
 while True:
     gimpo_api()
     time.sleep(200)
