@@ -74,7 +74,7 @@ class LotteCityHotelMapoBot(BotInterface):
             add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=add_action_params)
             if self.duration == 600:
                 add_action_params['discountType'] = 391
-                add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
+                add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=add_action_params)
             return True
 
         def list_find(k_car_num):
