@@ -29,7 +29,7 @@ AREA_ID = '13393'
 class JsHotelBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
         if self.duration == 1440:
             self.discount_id = 16
