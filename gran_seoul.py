@@ -18,7 +18,7 @@ LOGIN_INFO = {
     'j_password': '123456'
 }
 #웹할인 페이지
-PARK_HOST_URL = 'http://npgsgranparkingroot1.iptime.org'
+PARK_HOST_URL = 'http://npgsgranparkingroot0.iptime.org'
 LOGIN_URL = '/j_spring_security_check'
 SEARCH_CAR_NUMBER_URL = '/ezTicket/carSearch'
 SEARCH_TICKET_URL = '/ezTicket/carTicket'
