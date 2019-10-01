@@ -51,6 +51,8 @@ class namsansquareBot(BotInterface):
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
             tr_list = soup.select('table')[3].select('tr')
+            entry_time = tr_list[i].select('td')[2].text.strip()
+            self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")
             if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
