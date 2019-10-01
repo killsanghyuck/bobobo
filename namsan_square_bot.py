@@ -30,7 +30,7 @@ class namsansquareBot(BotInterface):
         self.entry_date = reservation['entry_date']
         self.ticket_state = reservation['ticket_state']
 
-        if ticket_state == 0:
+        if self.ticket_state == 0:
             self.discount_id = 63
         else:
             self.discount_id = 64
@@ -68,7 +68,7 @@ class namsansquareBot(BotInterface):
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
-                            
+
                         if self.check_time(): flag = False
                         break
         return flag
