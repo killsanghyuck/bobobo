@@ -136,7 +136,7 @@ def admin_login():
 def reservation_bot():
     TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
     pick_list = []
-    for i in range(1, 25):
+    for i in range(1, 40):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
         if u'로드스터 관리자' in html:
