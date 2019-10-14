@@ -73,7 +73,7 @@ class susongBot(BotInterface):
 
                         if self.check_time(): flag = False
                         break
-
+            
         return flag
 
     def check_time(self):
