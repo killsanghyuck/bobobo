@@ -157,6 +157,7 @@ def reservation_bot():
             area_id = soup.select('table > tbody > tr.row-parking_lot > td > a')[0]['href'].split('/')[3]
             k_car_num = car_number[0].encode_contents().decode().strip().replace(' ', '').split("<br/>")[0]
             ti = soup.select('table > tbody > tr.row-created_at > td')[1].text
+            continue if '+9000' in ti            
             ti = datetime.datetime.strptime(str(ti), "%Y/%m/%d %H:%M:%S")
             duration = soup.select('table > tbody > tr.row-ticket_item_code > td')[0].text
             arrival_time = soup.select('table > tbody > tr.row-estimated_arrival_time > td')[0].text
