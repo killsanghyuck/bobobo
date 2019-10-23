@@ -18,9 +18,7 @@ def gimpo_api():
     soup = BeautifulSoup(res.content, 'html.parser')
     area_list = soup.select('item')
     for k, v in enumerate(area_list):
-        data = {'key':'DQIVRNSV4P',
-                'infra_id':AREA_ID[v.select('parkingairportcodename')[0].text],
-                'current_parking':v.select('parkingistay')[0].text }
+        data = {'key': 'DQIVRNSV4P', 'infra_id': AREA_ID[v.select('parkingairportcodename')[0].text], 'current_parking': v.select('parkingistay')[0].text }
         try:
             response = requests.post(seoul_url, data=data )
             print response.content + " : " + datetime.datetime.today().strftime("%m-%d %H:%M")
