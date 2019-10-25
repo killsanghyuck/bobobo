@@ -70,6 +70,7 @@ from W_tower_bot import WtowerBot
 from Hyundai_sinchon_bot import HyundaisinchonBot
 from eco_terraces_bot import EcoterracesBot
 from central_tower_bot import CentraltowerBot
+from gangdong_green_bot import gangdongBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
