@@ -27,7 +27,7 @@ class DongilTowerBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = '03'
+        self.discount_id = '10'
         self.s = requests.Session()
 
     def login(self):

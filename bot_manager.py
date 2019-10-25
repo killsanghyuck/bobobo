@@ -28,7 +28,7 @@ from seosomoon_bot import SeoSoMoonBot
 from ddmc_bot import DdmcBot
 from sahakbusan_bot import SahakBusanBot
 from jongro_sc_bot import JongroScBot
-# from dongil_tower_bot import DongilTowerBot
+from dongil_tower_bot import DongilTowerBot
 from camko_yangjae_bot import CamkoYangjaeBot
 from jail_op_bot import JailOpBot
 from jump_bot import JumpBot
