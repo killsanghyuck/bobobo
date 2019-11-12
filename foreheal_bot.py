@@ -43,7 +43,7 @@ class forehealBot(BotInterface):
         flag = False
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
-            tr_list = soup.select('table')[3].select('tr')
+            tr_list = soup.select('table')[2].select('tr')
             if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
