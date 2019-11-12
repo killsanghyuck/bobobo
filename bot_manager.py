@@ -71,6 +71,7 @@ from Hyundai_sinchon_bot import HyundaisinchonBot
 from eco_terraces_bot import EcoterracesBot
 from central_tower_bot import CentraltowerBot
 from gangdong_green_bot import gangdongBot
+from foreheal_bot import forehealBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
