@@ -100,7 +100,7 @@ from gamjung_bot import GamjungBot
 from js_hotel_bot import JsHotelBot
 from pacific_bot import PacificBot
 from Hankyung_bot import hankyungBot
-from foreheal_bot import forehealBot
+from urbanil_yeom_bot import urbanilyeomBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
