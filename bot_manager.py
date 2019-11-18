@@ -72,6 +72,7 @@ from eco_terraces_bot import EcoterracesBot
 from central_tower_bot import CentraltowerBot
 from gangdong_green_bot import gangdongBot
 from foreheal_bot import forehealBot
+from shilla_haeundae_bot import shillahaeundaeBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
