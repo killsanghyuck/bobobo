@@ -78,7 +78,7 @@ class samwonBot(BotInterface):
     def check_time(self):
       flag = False
       entry_time = int(self.entry_time)
-      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
+      if (entry_time < 17 and entry_time >= 7) and self.ticket_state == 1:
         print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
         flag = True
 
