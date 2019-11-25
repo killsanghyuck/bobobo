@@ -102,6 +102,7 @@ from js_hotel_bot import JsHotelBot
 from pacific_bot import PacificBot
 from Hankyung_bot import hankyungBot
 from urbanil_yeom_bot import urbanilyeomBot
+from yp_center_bot import ypBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
