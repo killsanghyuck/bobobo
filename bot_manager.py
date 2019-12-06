@@ -103,6 +103,7 @@ from pacific_bot import PacificBot
 from Hankyung_bot import hankyungBot
 from urbanil_yeom_bot import urbanilyeomBot
 from yp_center_bot import ypBot
+from Hyundai_dcube_bot import dcubeBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
