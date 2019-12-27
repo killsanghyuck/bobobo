@@ -78,6 +78,7 @@ from aia_bot import aiaBot
 #aj
 from balsan_park_bot import BalsanParkBot
 from gmg_bot import GmgBot
+from itaewon_land_bot import ItaewonlandBot
 
 #아마노
 from ace_tower_bot import AceTowerBot
