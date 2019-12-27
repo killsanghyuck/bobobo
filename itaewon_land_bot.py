@@ -31,8 +31,8 @@ class ItaewonlandBot(BotInterface):
         self.duration = reservation['duration']
         if self.duration == 600:
             self.discount_id = u'dCode=00004'
-        elif self.duration == 360:
-            self.discount_id = u'dCode=00003'
+        elif self.duration == 240:
+            self.discount_id = u'dCode=00007'
         elif self.duration == 180:
             self.discount_id = u'dCode=00002'
         self.pKey = ''
