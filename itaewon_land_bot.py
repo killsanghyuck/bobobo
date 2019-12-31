@@ -35,6 +35,8 @@ class ItaewonlandBot(BotInterface):
             self.discount_id = u'dCode=00007'
         elif self.duration == 180:
             self.discount_id = u'dCode=00002'
+        elif self.duration == 360:
+            self.discount_id = u'dCode=00003'
         self.pKey = ''
         self.s = requests.Session()
 
