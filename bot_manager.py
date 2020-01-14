@@ -106,6 +106,7 @@ from Hankyung_bot import hankyungBot
 from urbanil_yeom_bot import urbanilyeomBot
 from yp_center_bot import ypBot
 from Hyundai_dcube_bot import dcubeBot
+from yeoksambuilding_bot import YeoksambuildingBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
