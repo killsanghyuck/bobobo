@@ -28,7 +28,7 @@ AREA_ID = '16058'
 class YeoksambuildingBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
         self.ticket_state = reservation['ticket_state']
 
