@@ -60,7 +60,6 @@ class parkmBot(BotInterface):
                 'peId': self.id,
                 'discountType': self.discount_id,
                 'carno': self.k_car_num,
-                'acPlate2': '',
                 'memo': ''
             }
             add_req = self.s.post(PARK_HOST_URL + ADD_ACTION_URL, data=ADD_ACTION_PARAMS)
