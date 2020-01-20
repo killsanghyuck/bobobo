@@ -19,6 +19,7 @@ SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
 LIST_FIND = '/discount/state/list/doListMst'
 LOGIN_INFO = {
+    'referer': '',
     'userId': 'kakaot',
     'userPwd': '123456'
 }
@@ -27,9 +28,17 @@ AREA_ID = '12228'
 class parkmBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
-        self.entry_date = reservation['entry_date']
+        self.entry_date = reservation['entry_date'].replace("-","")
         self.duration = reservation['duration']
-        self.discount_id = 8
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 0:
+            if self.duration == 1440:
+                self.discount_id = 8
+        else:
+            if self.duration == 1440:
+                self.discount_id = 8
+
         self.s = requests.Session()
 
     def login(self):
@@ -42,16 +51,31 @@ class parkmBot(BotInterface):
 
     def find_car_number(self):
         flag = False
-        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num, 'entryDate': self.entry_date})
+        find_req = self.s.post(PARK_HOST_URL + SEARCH_CAR_NUMBER_URL, data={'carNo': self.k_car_num[-4:], 'entryDate': self.entry_date})
         data = json.loads(find_req.content)
         self.returned_car_no = ''
+        self.entry_time = '19'
         if len(data) >= 1:
-            self.id = data[0]['id']
-            self.i_lot_area = data[0]['iLotArea']
-            self.returned_car_no = data[0]['carNo']
+            for car in data:
+                if self.k_car_num in car['carNo']:
+                    self.id = car['id']
+                    self.i_lot_area = car['iLotArea']
+                    self.returned_car_no = car['carNo']
+                    self.entry_time = datetime.datetime.strptime(car['entryDateToString'], "%Y-%m-%d %H:%M:%S").strftime("%H")
+                    flag = True
+                    if self.check_time(): flag = False
+                    break
 
-        if  self.k_car_num in self.returned_car_no: flag = True
         return flag
+
+    def check_time(self):
+      flag = False
+      entry_time = int(self.entry_time)
+      if (entry_time < 17 and entry_time >= 7) and self.ticket_state == 1:
+        print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
+        flag = True
+
+      return flag
 
     def process(self):
         flag = False
