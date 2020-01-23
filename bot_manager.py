@@ -79,8 +79,8 @@ from aia_bot import aiaBot
 from balsan_park_bot import BalsanParkBot
 from gmg_bot import GmgBot
 from itaewon_land_bot import ItaewonlandBot
-from wooribuilding_bot import WooribuildingBot
-from hankookeconomicdaily_bot import HankookeconoBot
+# from wooribuilding_bot import WooribuildingBot
+# from hankookeconomicdaily_bot import HankookeconoBot
 
 #아마노
 from ace_tower_bot import AceTowerBot
