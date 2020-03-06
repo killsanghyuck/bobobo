@@ -31,7 +31,7 @@ class IngBot(BotInterface):
         self.ticket_state = reservation['ticket_state']
 
         if self.ticket_state == 0:
-            self.discount_id = 96
+            self.discount_id = 98
         else:
             self.discount_id = 95
 
