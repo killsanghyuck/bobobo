@@ -24,7 +24,7 @@ AREA_ID = '12029'
 
 class WtowerBot(BotInterface):
 
-def __init__(self, reservation):
+    def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
         self.ticket_state = reservation['ticket_state']
