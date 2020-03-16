@@ -11,36 +11,24 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://ajhan.ajpark.kr'
+PARK_HOST_URL = 'http://ajmj2.asuscomm.com'
 LOGIN_URL = '/login.cs'
 SEARCH_CAR_NUMBER_URL = '/discount/carSearch.cs?userID=kakaot&contextPath='
 LIST_FIND = '/report/reportList.cs'
 LOGIN_INFO = {
     'j_username': 'kakaot',
-    'j_password': '123456'
+    'j_password': '1234'
 }
-AREA_ID = '16022'
+AREA_ID = '16485'
 
-class HankookeconoBot(BotInterface):
+class myungjinaturalBot(BotInterface):
 
     def __init__(self, reservation):
         #k_car_num = u''
-        #entry_date = u'2018-11-13' 
+        #entry_date = u'2018-11-13'
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.duration = reservation['duration']
-        self.ticket_state = reservation['ticket_state']
-
-        if self.ticket_state == 0:
-            if self.duration == 1440:
-                self.discount_id = u'dCode=00015'
-            elif self.duration == 600:
-                self.discount_id = u'dCode=00015'
-            elif self.duration == 720:
-                self.discount_id = u'dCode=00012'
-        else:
-            if self.duration == 1440:
-                self.discount_id = u'dCode=00013'
+        self.discount_id = u'dCode=00017'
         self.pKey = ''
         self.s = requests.Session()
 

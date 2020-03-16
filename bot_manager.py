@@ -83,6 +83,7 @@ from gmg_bot import GmgBot
 from itaewon_land_bot import ItaewonlandBot
 # from wooribuilding_bot import WooribuildingBot
 # from hankookeconomicdaily_bot import HankookeconoBot
+from myingji_natural_bot import myungjinaturalBot
 
 #아마노
 from ace_tower_bot import AceTowerBot
