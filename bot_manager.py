@@ -76,6 +76,7 @@ from shilla_haeundae_bot import shillahaeundaeBot
 from aia_bot import aiaBot
 from orakai_cheonggyesan_bot import orakaicheonggyesanBot
 from orakai_daehakro_bot import orakaidaehakroBot
+from orakai_insadong_bot import orakaiinsadong
 
 #aj
 from balsan_park_bot import BalsanParkBot
