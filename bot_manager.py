@@ -77,6 +77,7 @@ from aia_bot import aiaBot
 from orakai_cheonggyesan_bot import orakaicheonggyesanBot
 from orakai_daehakro_bot import orakaidaehakroBot
 from orakai_insadong_bot import orakaiinsadong
+from orange_center_bot import orangecenter
 
 #aj
 from balsan_park_bot import BalsanParkBot
