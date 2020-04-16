@@ -80,6 +80,7 @@ from orakai_insadong_bot import orakaiinsadong
 from orange_center_bot import orangecenter
 from euljitwin_bot import euljiBot
 from egbuilding_bot import egbuildingBot
+from munjeong_plaza_bot import munjeongplaza
 
 #aj
 from balsan_park_bot import BalsanParkBot
