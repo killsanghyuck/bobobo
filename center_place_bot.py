@@ -19,7 +19,7 @@ ADD_ACTION_URL = '/discount/discount_regist.asp'
 LIST_FIND = '/discount/discount_list.asp'
 LOGIN_INFO = {
     'user_id': 'kakaot',
-    'password': '123456'
+    'password': '1111'
 }
 AREA_ID = '12013'
 
