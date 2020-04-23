@@ -12,7 +12,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://125.131.138.11'
+PARK_HOST_URL = 'http://221.151.189.28'
 LOGIN_URL = '/index.php/login/doLogin'
 SEARCH_CAR_NUMBER_URL = '/index.php/main/ajax_CarList'
 ADD_ACTION_URL = '/index.php/main/ajax_DisIns'
