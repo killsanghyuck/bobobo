@@ -81,6 +81,9 @@ from orange_center_bot import orangecenter
 from euljitwin_bot import euljiBot
 from egbuilding_bot import egbuildingBot
 from munjeong_plaza_bot import munjeongplaza
+from meritzfire_bot import meritzfireBot
+from yangwoodrama_bot import yangwoodramaBot
+from seohyeon_building_bot import seohyeonbuildingBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
