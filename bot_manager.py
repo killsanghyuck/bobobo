@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import sys
 import time
 import datetime
+import requests
 
 #bot_list
 
@@ -160,6 +161,8 @@ def admin_login():
 def reservation_bot():
     TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
     pick_list = []
+    headers = {'Authorization': 'Token DXeEaqqyyGkQyNJxgqanGnkE'}
+    requests.get('https://parking.kakao.com/corp/api/v1/health',headers=headers, params={'lot_id': 'biMf5BPPXv'})
     for i in range(1, 40):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
