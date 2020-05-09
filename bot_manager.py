@@ -92,7 +92,7 @@ from gmg_bot import GmgBot
 from itaewon_land_bot import ItaewonlandBot
 # from wooribuilding_bot import WooribuildingBot
 # from hankookeconomicdaily_bot import HankookeconoBot
-from myingji_natural_bot import myungjinaturalBot
+# from myingji_natural_bot import myungjinaturalBot
 # from wooshin_bot import WooshinBot
 
 #아마노
@@ -140,7 +140,7 @@ options.add_argument('--disable-gpu')
 options.add_argument("lang=ko_KR")
 
 driver = webdriver.Chrome('/Users/mobility/Documents/kakaobot/chromedriver', options=options)
-# driver = webdriver.Chrome('/Users/ivan.l/Documents/kakao_bot/chromedriver', options=options)
+# driver = webdriver.Chrome('/Users/ivan.l/Documents/kakaobot/chromedriver', options=options)
 driver.implicitly_wait(3)
 
 #카카오 어드민 계정
