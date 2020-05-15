@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import sys
 import time
+import datetime
 from bot_interface import BotInterface
 
 from importlib import reload
@@ -27,7 +28,13 @@ class L7HongBot(BotInterface):
     def __init__(self, reservation):
         self.k_car_num = reservation['k_car_num']
         self.entry_date = reservation['entry_date']
-        self.discount_id = 10
+        self.ticket_state = reservation['ticket_state']
+
+        if self.ticket_state == 0:
+            self.discount_id = 10
+        else:
+            self.discount_id = 17
+
         self.s = requests.Session()
 
     def login(self):
@@ -43,7 +50,7 @@ class L7HongBot(BotInterface):
         flag = False
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
-            tr_list = soup.select('table')[3].select('tr')
+            tr_list = soup.select('table')[2].select('tr')
             if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
@@ -55,13 +62,27 @@ class L7HongBot(BotInterface):
                     else:
                         car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
                         parking_time = tr_list[i].select('td')[3].text.strip()
+                        entry_time = tr_list[i].select('td')[2].text.strip()
+                        self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")
                         if car_num == self.k_car_num and len(parking_time) == 5:
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
                         elif car_num == self.k_car_num and parking_time > '20':
                             self.chk = tr_list[i].select('td')[0].select('input')[0]['value']
                             flag = True
+
+                        if self.check_time(): flag = False
+                        break
         return flag
+
+    def check_time(self):
+      flag = False
+      entry_time = int(self.entry_time)
+      if (entry_time < 18 and entry_time >= 7) and self.ticket_state == 1:
+        print(u'이용가능시간 아님(이거 아래 입차확인 불가로 표시함)')
+        flag = True
+
+      return flag
 
     def process(self):
         flag = False
