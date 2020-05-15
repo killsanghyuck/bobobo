@@ -36,8 +36,6 @@ class JumpBot(BotInterface):
                 self.discount_id = 12
             else:
                 self.discount_id = 23
-                else:
-                self.discount_id = 22
         else:
             self.discount_id = 21
 
