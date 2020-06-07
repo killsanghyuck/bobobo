@@ -33,7 +33,7 @@ class L7HongBot(BotInterface):
         if self.ticket_state == 0:
             self.discount_id = 10
         else:
-            self.discount_id = 17
+            self.discount_id = 27
 
         self.s = requests.Session()
 
