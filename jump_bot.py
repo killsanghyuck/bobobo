@@ -65,7 +65,7 @@ class JumpBot(BotInterface):
                         flag = False
                     else:
                         car_num = tr_list[i].select('td')[1].text.split('[')[0].strip()
-                        parking_time = tr_list[i].select('td')[2].text.strip()
+                        parking_time = tr_list[i].select('td')[3].text.strip()
                         entry_time = tr_list[i].select('td')[2].text.strip()
                         self.entry_time = datetime.datetime.strptime(entry_time, "%Y-%m-%d %H:%M:%S").strftime("%H")
                         if car_num == self.k_car_num and len(parking_time) == 5:
