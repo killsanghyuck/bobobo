@@ -85,6 +85,7 @@ from munjeong_plaza_bot import munjeongplaza
 from meritzfire_bot import meritzfireBot
 from yangwoodrama_bot import yangwoodramaBot
 from seohyeon_building_bot import seohyeonbuildingBot
+from crescendo_bot import crescendoBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
