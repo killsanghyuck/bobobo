@@ -122,7 +122,6 @@ from urbanil_yeom_bot import urbanilyeomBot
 from yp_center_bot import ypBot
 from Hyundai_dcube_bot import dcubeBot
 from yeoksambuilding_bot import YeoksambuildingBot
-from euljitwin_bot import euljiBot
 
 #넥스파
 from gran_seoul import GranSeoulBot
@@ -163,7 +162,7 @@ def reservation_bot():
     pick_list = []
     headers = {'Authorization': 'Token DXeEaqqyyGkQyNJxgqanGnkE'}
     requests.get('https://parking.kakao.com/corp/api/v1/health',headers=headers, params={'lot_id': 'biMf5BPPXv'})
-    for i in range(1, 40):
+    for i in range(1, 60):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
         if u'로드스터 관리자' in html:
