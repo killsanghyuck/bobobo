@@ -12,7 +12,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://116.124.66.81:8090/'
+PARK_HOST_URL = 'http://116.124.66.91:8090/'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -33,7 +33,7 @@ class centerplaceBot(BotInterface):
         if self.ticket_state == 0:
             self.discount_id = 97
         else:
-            self.discount_id = 97
+            self.discount_id = 81
 
         self.s = requests.Session()
 
