@@ -147,7 +147,8 @@ driver.implicitly_wait(3)
 KAKAO_ID = 'san.kill'
 KAKAO_PW = '!@dl926516'
 
-HOST_URL = 'https://parking.kakao.com/admin'
+#HOST_URL = 'https://parking.kakao.com/admin'
+HOST_URL = 'https://parking.kakaosecure.net/admin'
 
 all_jobs = []
 TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
@@ -162,7 +163,7 @@ def reservation_bot():
     TODAY = datetime.datetime.today().strftime("%Y-%m-%d")
     pick_list = []
     headers = {'Authorization': 'Token DXeEaqqyyGkQyNJxgqanGnkE'}
-    requests.get('https://parking.kakao.com/corp/api/v1/health',headers=headers, params={'lot_id': 'biMf5BPPXv'})
+    requests.get('https://parking.kakaosecure.net/corp/api/v1/health',headers=headers, params={'lot_id': 'biMf5BPPXv'})
     for i in range(1, 60):
         driver.get(HOST_URL + '/picks?q[state_eq]=4&page=' + str(i) + '&order=id_desc')
         html = driver.page_source
