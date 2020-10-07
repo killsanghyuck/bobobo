@@ -19,8 +19,8 @@ SEARCH_CAR_NUMBER_URL = '/discount/registration/listForDiscount'
 ADD_ACTION_URL = '/discount/registration/save'
 LIST_FIND = '/state/list'
 LOGIN_INFO = {
-    'userId': 'parkhere',
-    'userPwd': '1234'
+    'userId': 'kakao',
+    'userPwd': 'kakao001'
 }
 AREA_ID = '9953'
 
