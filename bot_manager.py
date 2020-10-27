@@ -147,7 +147,7 @@ driver.implicitly_wait(3)
 KAKAO_ID = 'san.kill'
 KAKAO_PW = '!@dl926516'
 
-#HOST_URL = 'https://parking.kakao.com/admin'
+# HOST_URL = 'https://parking.kakao.com/admin'
 HOST_URL = 'https://parking.kakaosecure.net/admin'
 
 all_jobs = []
