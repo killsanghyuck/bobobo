@@ -110,7 +110,7 @@ from park_m_bot import parkmBot
 from blue_square_bot import BlueBot
 from kyung_ho1_bot import KyungHo1
 from kyung_ho2_bot import KyungHo2
-from hongdae_bot import HongDaeBot
+# from hongdae_bot import HongDaeBot
 from ecc_bot import eccbot
 from one_pung_bot import OnePungBot
 from seoul_archives_bot import SeoularchiveshBot
