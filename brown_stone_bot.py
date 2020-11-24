@@ -43,8 +43,8 @@ class brownBot(BotInterface):
         flag = False
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
-            tr_list = soup.select('table')[1].select('tr')
-            if len(tr_list) > 3:
+            tr_list = soup.select('table')[3].select('tr')
+            if len(tr_list) > 2:
                 for i in range(1, len(tr_list)-1):
                     try:
                         enter_car = tr_list[i].select('td')[1]
