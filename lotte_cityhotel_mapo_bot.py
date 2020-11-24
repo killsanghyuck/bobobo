@@ -22,7 +22,7 @@ LOGIN_INFO = {
     'userId': 'parkhere81',
     'userPwd': '1234'
 }
-AREA_ID = '2018'
+AREA_ID = '16745'
 
 CORP_NAME = '파킹스퀘어'
 
