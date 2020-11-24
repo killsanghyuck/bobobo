@@ -12,7 +12,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://175.193.171.113:8090/'
+PARK_HOST_URL = 'https://hnib.hiparking.co.kr/'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -31,7 +31,7 @@ class NHeastBot(BotInterface):
         self.ticket_state = reservation['ticket_state']
 
         if self.ticket_state == 0:
-            self.discount_id = 95
+            self.discount_id = 98
         else:
             self.discount_id = 96
         self.s = requests.Session()
