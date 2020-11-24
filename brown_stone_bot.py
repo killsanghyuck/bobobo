@@ -11,7 +11,7 @@ from importlib import reload
 
 
 #봇 기본 정보
-PARK_HOST_URL = 'http://220.110.233.119:8090'
+PARK_HOST_URL = 'http://222.110.233.119:8090'
 LOGIN_URL = '/account/login.asp'
 SEARCH_CAR_NUMBER_URL = '/discount/discount_regist.asp'
 ADD_ACTION_URL = '/discount/discount_regist.asp'
@@ -43,8 +43,8 @@ class brownBot(BotInterface):
         flag = False
         if find_req.status_code == 200:
             soup = BeautifulSoup(find_req.content, 'html.parser')
-            tr_list = soup.select('table')[3].select('tr')
-            if len(tr_list) > 2:
+            tr_list = soup.select('table')[1].select('tr')
+            if len(tr_list) > 3:
                 for i in range(1, len(tr_list)-1):
                     try:
                         enter_car = tr_list[i].select('td')[1]
