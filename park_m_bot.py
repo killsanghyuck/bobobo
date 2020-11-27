@@ -34,10 +34,10 @@ class parkmBot(BotInterface):
 
         if self.ticket_state == 0:
             if self.duration == 1440:
-                self.discount_id = 8
+                self.discount_id = 19
         else:
             if self.duration == 1440:
-                self.discount_id = 8
+                self.discount_id = 19
 
         self.s = requests.Session()
 
