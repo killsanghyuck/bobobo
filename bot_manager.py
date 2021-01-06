@@ -86,6 +86,7 @@ from meritzfire_bot import meritzfireBot
 from yangwoodrama_bot import yangwoodramaBot
 from seohyeon_building_bot import seohyeonbuildingBot
 from crescendo_bot import crescendoBot
+from hyundai_dongdaemoon_bot import dongdaemoonBot
 
 #aj
 from balsan_park_bot import BalsanParkBot
