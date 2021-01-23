@@ -29,7 +29,7 @@ class KyungHo1(BotInterface):
 
         if self.ticket_state == 1:
             if self.duration == 1440:
-                self.discount_id = 5
+                self.discount_id = 7
         else:
             if self.duration == 240:
                 self.discount_id = 4
